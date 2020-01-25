@@ -1,10 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+// import Map from "./Map";
 const Navbar = ({ handleClick }) => (
   <div className="nav-base">
+    <pre id="info"></pre>
     <nav>
       <div>
         <div />

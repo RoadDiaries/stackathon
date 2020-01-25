@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import { withRouter, Route, Switch, BrowserRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { withRouter, Route, Switch, BrowserRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 // import {Login, Signup, UserHome} from './components'
 // import {me} from './store'
-import App from './components/app';
-import AddEntry from './components/addEntry';
+import App from "./components/app";
+import AddEntry from "./components/addEntry";
+import SignIn from "./components/SignIn";
 
 /**
  * COMPONENT
@@ -35,7 +36,7 @@ class Routes extends Component {
           {/* )} */}
           {/* Displays our Login component as a fallback */}
           <Route exact path="/" component={App} />
-          {/* <Route component={Login} /> */}
+          <Route component={SignIn} />
         </Switch>
       </BrowserRouter>
     );

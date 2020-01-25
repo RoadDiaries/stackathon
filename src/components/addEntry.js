@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { firestore } from '../firebase';
+import React, { Component } from "react";
+import { firestore } from "../firebase";
 
 class AddEntry extends Component {
   state = {
-    city: '',
-    location: '',
-    content: '',
+    city: "",
+    location: "",
+    content: "",
     date: new Date(),
     picture: []
   };
@@ -33,17 +33,17 @@ class AddEntry extends Component {
       // country,
       // dateVisited,
       user: {
-        uid: '1111',
-        displayName: 'John Doe',
-        email: 'John@gmail.com',
-        photoURL: 'http://placekitten.com/g/200/200'
+        uid: "1111",
+        displayName: "John Doe",
+        email: "John@gmail.com",
+        photoURL: "http://placekitten.com/g/200/200"
       },
       coordinates: [-477, 544],
       visitDate: new Date()
     };
 
     firestore
-      .collection('entries')
+      .collection("entries")
       .doc(entry.city)
       .set(entry);
 
@@ -51,19 +51,22 @@ class AddEntry extends Component {
     console.log(entryref);
 
     this.setState({
-      city: '',
-      location: '',
-      content: '',
+      city: "",
+      location: "",
+      content: "",
       date: new Date(),
       picture: []
     });
   };
 
   render() {
+    const searchElement = document.getElementById("city-search");
+    console.log("this is a search element in add entry", searchElement);
     const { city, location, content, date, picture } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className="AddEntry">
         <input
+          id="city-search"
           type="text"
           name="city"
           placeholder="City"
