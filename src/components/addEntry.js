@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { firestore } from "../firebase";
+import LocationSearchInput from "./locationSearch";
 
 class AddEntry extends Component {
   state = {
@@ -60,20 +61,21 @@ class AddEntry extends Component {
   };
 
   render() {
-    const searchElement = document.getElementById("city-search");
-    console.log("this is a search element in add entry", searchElement);
     const { city, location, content, date, picture } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className="AddEntry">
+        {
+          // <input id="city-search"
+          //   type="text"
+          //   name="city"
+          //   placeholder="City"
+          //   value={city}
+          //   onChange={this.handleChange}
+          // // />
+        }
+        <LocationSearchInput className="input-field" />
         <input
-          id="city-search"
-          type="text"
-          name="city"
-          placeholder="City"
-          value={city}
-          onChange={this.handleChange}
-        />
-        <input
+          className="input-field"
           type="text"
           name="location"
           placeholder="Location"
@@ -81,12 +83,14 @@ class AddEntry extends Component {
           onChange={this.handleChange}
         />
         <input
+          className="input-field"
           type="date"
           name="date"
           value={date}
           onChange={this.handleChange}
         />
         <input
+          className="input-field"
           type="text"
           name="content"
           placeholder="content"
@@ -94,6 +98,7 @@ class AddEntry extends Component {
           onChange={this.handleChange}
         />
         <input
+          className="input-field"
           type="file"
           name="pictures"
           value={picture}
