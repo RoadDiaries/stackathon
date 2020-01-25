@@ -22,7 +22,7 @@ class AddEntry extends Component {
     // const { uid, displayName, email, photoURL } = auth.currentUser || {};
 
     const entry = {
-      id: new Date(),
+      // id: new Date().toString(),
       city,
       location,
       content,
