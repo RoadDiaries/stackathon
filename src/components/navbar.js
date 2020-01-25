@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const Navbar = () => (
   <div className="nav-base">
+    <pre id="info"></pre>
     <nav>
       <div>
         <div />

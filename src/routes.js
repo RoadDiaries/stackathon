@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import { withRouter, Route, Switch, BrowserRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { withRouter, Route, Switch, BrowserRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 // import {Login, Signup, UserHome} from './components'
 // import {me} from './store'
-import App from './components/app';
-import AddEntry from './components/addEntry';
-import Landmarks from './components/landmarks';
+import App from "./components/app";
+import AddEntry from "./components/addEntry";
+import Landmarks from "./components/landmarks";
 
 /**
  * COMPONENT

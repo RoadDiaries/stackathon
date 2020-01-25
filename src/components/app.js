@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { firestore } from '../firebase';
-
-import Entries from './allEntries';
-import { collectIdsAndDocs } from './utilities';
+import React, { Component } from "react";
+import { firestore } from "../firebase";
+import Map from "./Map";
+import Entries from "./allEntries";
+import { collectIdsAndDocs } from "./utilities";
 
 class App extends Component {
   state = {
@@ -22,18 +22,18 @@ class App extends Component {
     //   this.setState({entries})
     // })
     const testEntries = await firestore
-      .collection('entries')
-      .doc('NEW YORK')
+      .collection("entries")
+      .doc("NEW YORK")
       .onSnapshot(doc => {
         console.log(doc.data());
       });
-    console.log('BEFORE ENTIRES', testEntries);
-    this.unsubscribe = firestore.collection('entries').onSnapshot(snapshot => {
+    console.log("BEFORE ENTIRES", testEntries);
+    this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
-      console.log('STATE', entries);
+      console.log("STATE", entries);
 
       this.setState({ entries });
-      console.log('AFTER ENTIRES', testEntries);
+      console.log("AFTER ENTIRES", testEntries);
     });
   };
 
@@ -89,17 +89,43 @@ class App extends Component {
             </ul>
           </nav>
         </aside>
-        <section className="twitter">
-          <div className="container">
-            <img
-              className="main-map"
-              src="https://media.nationalgeographic.org/assets/photos/000/276/27666.jpg"
-            />
-          </div>
-        </section>
+        <map id="map"></map>
+        <div className="map-container"></div>
       </main>
     );
   }
 }
 
 export default App;
+
+// <div id="map">
+// <div id="menu">
+//   <input
+//     id="streets-v11"
+//     type="radio"
+//     name="rtoggle"
+//     value="streets"
+//     checked="checked"
+//   />
+//   <label for="streets">streets</label>
+//   <input id="light-v10" type="radio" name="rtoggle" value="light" />
+//   <label for="light">light</label>
+//   <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
+//   <label for="dark">dark</label>
+//   <input
+//     id="outdoors-v11"
+//     type="radio"
+//     name="rtoggle"
+//     value="outdoors"
+//   />
+//   <label for="outdoors">outdoors</label>
+//   <input
+//     id="satellite-v9"
+//     type="radio"
+//     name="rtoggle"
+//     value="satellite"
+//   />
+//   <label for="satellite">satellite</label>
+// </div>
+// <div className="container"></div>
+// </div>
