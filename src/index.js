@@ -31,9 +31,23 @@ map.on("mousemove", function(e) {
     // e.lngLat is the longitude, latitude geographical position of the event
     JSON.stringify(e.lngLat.wrap());
 });
+
+// const markerDomEl = document.createElement("div");
+// markerDomEl.style.width = "32px";
+// markerDomEl.style.height = "39px";
+// markerDomEl.style.backgroundImage = "url(http://i.imgur.com/WbMOfMl.png)";
+// new mapboxgl.Marker(markerDomEl).setLngLat([-74.009, 40.705]).addTo(map);
 // var layerList = document.getElementById("menu");
 // var inputs = layerList.getElementsByTagName("input");
-
+// export function addMarker(coordinates) {
+//   const markerDomEl = document.createElement("div");
+//   markerDomEl.style.width = "32px";
+//   markerDomEl.style.height = "39px";
+//   markerDomEl.style.backgroundImage = "url(http://i.imgur.com/WbMOfMl.png)";
+//   return new mapboxgl.Marker(markerDomEl)
+//     .setLngLat([coordinates[0], coordinates[1]])
+//     .addTo(map);
+// }
 // function switchLayer(layer) {
 //   var layerId = layer.target.id;
 //   map.setStyle("mapbox://styles/mapbox/" + layerId);

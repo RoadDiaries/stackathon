@@ -1,42 +1,72 @@
-// import React from "react";
+import React from "react";
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import { accessToken } from "./token";
+const MapBoxMap = ReactMapboxGl({ accessToken });
 
-// const Map = () => {
-//   return (
-//     <div>
-//       <map id="map"></map>
-//       <div id="map">
-//         <div id="menu">
-//           <input
-//             id="streets-v11"
-//             type="radio"
-//             name="rtoggle"
-//             value="streets"
-//             checked="checked"
-//           />
-//           <label for="streets">streets</label>
-//           <input id="light-v10" type="radio" name="rtoggle" value="light" />
-//           <label for="light">light</label>
-//           <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
-//           <label for="dark">dark</label>
-//           <input
-//             id="outdoors-v11"
-//             type="radio"
-//             name="rtoggle"
-//             value="outdoors"
-//           />
-//           <label for="outdoors">outdoors</label>
-//           <input
-//             id="satellite-v9"
-//             type="radio"
-//             name="rtoggle"
-//             value="satellite"
-//           />
-//           <label for="satellite">satellite</label>
-//         </div>
-//         <div className="container"></div>
-//       </div>
-//     </div>
-//   );
-// };
+export class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      center: [-73.93, 40.73],
+      pinEvent: [],
+      zoom: [11],
+      selectedPin: null
+    };
+    // this.onPinCLick = this.onPinCLick.bind(this);
+  }
 
-// export default Map;
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   console.log(nextProps);
+  //   const { coordinates, event, hoverItem } = nextProps;
+  //   if (hoverItem) {
+  //     return {
+  //       ...prevState,
+  //       selectedPin: hoverItem,
+  //       center: [Number(hoverItem.longitude), Number(hoverItem.latitude)],
+  //       zoom: [14]
+  //     };
+  //   }
+  //   if (event) {
+  //     return {
+  //       ...prevState,
+  //       pinEvent: event,
+  //       zoom: [12]
+  //     };
+  //   }
+  //   if (coordinates.length) {
+  //     return {
+  //       ...prevState,
+  //       center: [Number(coordinates[1]), Number(coordinates[0])]
+  //     };
+  //   }
+
+  //   return { ...prevState };
+  // }
+
+  // onPinCLick(event) {
+  //   this.setState({
+  //     selectedPin: event,
+  //     center: [Number(event.longitude), Number(event.latitude)]
+  //   });
+  //   setTimeout(() => {
+  //     this.setState({ selectedPin: null });
+  //   }, 5000);
+  // }
+
+  render() {
+    return (
+      <MapBoxMap
+        // eslint-disable-next-line react/style-prop-object
+        style="mapbox://styles/panktip85/cjieyr3ow2qst2rpe3bszy1tn"
+        center={this.state.center}
+        zoom={this.state.zoom}
+        containerStyle={{
+          height: "70vh",
+          width: "90vw"
+        }}
+      ></MapBoxMap>
+    );
+  }
+}
+
+export default Map;
