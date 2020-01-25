@@ -2,14 +2,14 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAiBJRTKMbhLEWLG7nLC0XnBORC1g6A1xs',
-  authDomain: 'roaddiaries-24a93.firebaseapp.com',
-  databaseURL: 'https://roaddiaries-24a93.firebaseio.com',
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
   projectId: 'roaddiaries-24a93',
-  storageBucket: 'roaddiaries-24a93.appspot.com',
-  messagingSenderId: '974997947086',
-  appId: '1:974997947086:web:ca48f8ecb9d7028178069f',
-  measurementId: 'G-GKR2N1CP94'
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID
 };
 firebase.initializeApp(firebaseConfig);
 window.firebase = firebase;

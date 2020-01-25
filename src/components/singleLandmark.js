@@ -33,8 +33,8 @@ const Landmark = ({
             {picture}
           </p>
           {/* <p>Posted by {user.displayName}</p> */}
-          <p>Trip Date: {date}</p>
-          <img src={picture} />
+          {/* <p>Trip Date: {date}</p> */}
+          {/* <img src={picture} /> */}
         </div>
         <div />
         <div>

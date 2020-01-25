@@ -10,6 +10,7 @@ const Entries = ({ entries, onCreate, onRemove }) => {
   return (
     <section className="Posts">
       {/* <AddEntry onCreate={onCreate} /> */}
+
       <ul className="entry-list">
         <AddEntry />
         {entries.map(entry => (

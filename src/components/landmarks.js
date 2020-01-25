@@ -11,11 +11,9 @@ import { collectIdsAndDocs } from '../components/utilities';
 
 class Landmarks extends Component {
   state = { entry: null, landmarks: [] };
-  get enrtyId() {
-    return this.props.match.params.id; //?
-  }
+
   get entryRef() {
-    return firestore.doc(`entries/${this.entryId}`);
+    return firestore.doc(`entries/${this.props.match.params.id}`);
   }
   get landmarksRef() {
     return this.entryRef.collection('landmarks');
@@ -45,7 +43,7 @@ class Landmarks extends Component {
   };
   render() {
     const { entry, landmarks } = this.state;
-    console.log(this.props);
+    console.log('IN LANDMARKS', this.props);
     return (
       <section>
         {entry && <SingleEntry {...entry} />}
@@ -58,7 +56,12 @@ class Landmarks extends Component {
   }
 
   //   render() {
-  //     return <div>LANDMARKS</div>;
+  //     return (
+  //       <div>
+  //         LANDMARKS
+  //         <h1>{this.props.match.params.id}</h1>
+  //       </div>
+  //     );
   //   }
 }
 

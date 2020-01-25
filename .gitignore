@@ -21,4 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+
+# secret
 secrets.js
+=======
+secrets.js
+>>>>>>> 5fa0ce5a26294612cb67a37f9c70a7fa2950aff9
