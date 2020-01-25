@@ -31,6 +31,7 @@ class App extends Component {
     this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
       console.log("STATE", entries);
+
       this.setState({ entries });
       console.log("AFTER ENTIRES", testEntries);
     });

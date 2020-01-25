@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 // import {me} from './store'
 import App from "./components/app";
 import AddEntry from "./components/addEntry";
-import SignIn from "./components/SignIn";
+import Landmarks from "./components/landmarks";
 
 /**
  * COMPONENT
@@ -20,25 +20,26 @@ class Routes extends Component {
     // const {isLoggedIn} = this.props
 
     return (
-      <BrowserRouter>
-        <Switch>
-          {/* <Route path="/login" component={Login} />
+      //   <BrowserRouter>
+      <Switch>
+        {/* <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} /> */}
-          <Route exact path="/" component={App} />
-          <Route exact path="/newEntry" component={AddEntry} />
-          {/* {isLoggedIn && ( */}
-          {/* <Switch> */}
-          {/* Routes placed here are only available after logging in */}
-          {/* <Route exact path="/newEntry" component={AddEntry} /> */}
+        <Route exact path="/" component={App} />
+        <Route exact path="/entries/:id" component={Landmarks} />
+        <Route exact path="/newEntry" component={AddEntry} />
+        {/* {isLoggedIn && ( */}
+        {/* <Switch> */}
+        {/* Routes placed here are only available after logging in */}
+        {/* <Route exact path="/newEntry" component={AddEntry} /> */}
 
-          {/* <Route path="/home" component={UserHome} /> */}
-          {/* </Switch> */}
-          {/* )} */}
-          {/* Displays our Login component as a fallback */}
-          <Route exact path="/" component={App} />
-          <Route component={SignIn} />
-        </Switch>
-      </BrowserRouter>
+        {/* <Route path="/home" component={UserHome} /> */}
+        {/* </Switch> */}
+        {/* )} */}
+        {/* Displays our Login component as a fallback */}
+        {/* <Route exact path="/" component={App} /> */}
+        {/* <Route component={Login} /> */}
+      </Switch>
+      //   </BrowserRouter>
     );
   }
 }

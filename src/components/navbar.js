@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { Link } from "react-router-dom";
-// import Map from "./Map";
-const Navbar = ({ handleClick }) => (
+const Navbar = () => (
   <div className="nav-base">
     <pre id="info"></pre>
     <nav>
@@ -73,7 +71,7 @@ export default Navbar;
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-};
+// Navbar.propTypes = {
+//   handleClick: PropTypes.func.isRequired,
+//   isLoggedIn: PropTypes.bool.isRequired
+// };
