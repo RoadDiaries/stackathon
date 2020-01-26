@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import SingleEntry from "./singleEntry";
-import LandmarkContainer from "./landmarkContainer";
-import { firestore } from "../firebase";
-import { collectIdsAndDocs } from "../components/utilities";
+import SingleEntry from './singleEntry';
+import LandmarkContainer from './landmarkContainer';
+import { firestore } from '../firebase';
+import { collectIdsAndDocs } from '../components/utilities';
 
 // import { withRouter } from 'react-router-dom';
 // import Landmark from './singleLandmark';
@@ -13,10 +13,11 @@ class Landmarks extends Component {
   state = { entry: null, landmarks: [] };
 
   get entryRef() {
-    return firestore.doc(`entries/${this.props.match.params.id}`);
+    return firestore.doc(`entries/${this.props.city}`);
+    // return firestore.doc(`entries/${this.props.match.params.id}`);
   }
   get landmarksRef() {
-    return this.entryRef.collection("landmarks");
+    return this.entryRef.collection('landmarks');
   }
   unsubscribeFromEntry = null;
   unsubscribeFromLandmarks = null;
@@ -48,21 +49,13 @@ class Landmarks extends Component {
       <section>
         {entry && <SingleEntry {...entry} />}
         <LandmarkContainer
+          city={this.props.city}
           landmarks={landmarks}
           onCreate={this.createLandmark}
         />
       </section>
     );
   }
-
-  //   render() {
-  //     return (
-  //       <div>
-  //         LANDMARKS
-  //         <h1>{this.props.match.params.id}</h1>
-  //       </div>
-  //     );
-  //   }
 }
 
 // export default withRouter(withUser(PostPage));
