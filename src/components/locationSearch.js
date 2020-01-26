@@ -21,7 +21,10 @@ class LocationSearchInput extends React.Component {
 
   handleSelect = address => {
     geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
+      .then(results => {
+        console.log("result arer", results);
+        return getLatLng(results[0]);
+      })
       .then(latLng => {
         this.setState({
           address: address,
@@ -37,7 +40,7 @@ class LocationSearchInput extends React.Component {
   };
 
   render() {
-    const searchVals = {
+    const searchOptions = {
       location: new google.maps.LatLng(
         this.state.coordinates[0],
         this.state.coordinates[1]
@@ -49,7 +52,7 @@ class LocationSearchInput extends React.Component {
         value={this.state.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect}
-        searchVals={searchVals}
+        searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
