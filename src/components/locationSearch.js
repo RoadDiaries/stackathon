@@ -33,8 +33,6 @@ class LocationSearchInput extends React.Component {
       })
       .then(() => {
         this.props.updateCoordinates(this.state.coordinates);
-
-        console.log(this.state);
       })
       .catch(error => console.error("Error", error));
   };

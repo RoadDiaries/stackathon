@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class AddLandmark extends Component {
   state = {
-    name: '',
-    address: '',
-    content: '',
+    name: "",
+    address: "",
+    content: "",
     date: new Date(),
     picture: []
   };
@@ -20,16 +20,16 @@ class AddLandmark extends Component {
     this.props.onCreate(this.state);
 
     this.setState({
-      name: '',
-      address: '',
-      content: '',
+      name: "",
+      address: "",
+      content: "",
       date: new Date(),
       picture: []
     });
   };
 
   render() {
-    const { name, address, content, date, picture } = this.state;
+    const { name, content, date, picture } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className="AddLandmark">
         <input
@@ -37,13 +37,6 @@ class AddLandmark extends Component {
           name="name"
           placeholder="landmark"
           value={name}
-          onChange={this.handleChange}
-        />
-        <input
-          type="text"
-          name="address"
-          placeholder="address"
-          value={address}
           onChange={this.handleChange}
         />
         <input
