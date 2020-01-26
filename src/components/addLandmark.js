@@ -1,25 +1,26 @@
 /*global google*/
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
   getLatLng
-} from "react-places-autocomplete";
-import { firestore } from "../firebase";
+} from 'react-places-autocomplete';
+import { firestore, storage } from '../firebase';
 
 class AddLandmark extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      address: "",
-      content: "",
+      name: '',
+      address: '',
+      content: '',
       date: new Date(),
-      picture: [],
+      pictures: [],
       coordinates: []
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,28 +29,46 @@ class AddLandmark extends Component {
   get entryRef() {
     console.log(
       this.state,
-      "this is the state passing down",
+      'this is the state passing down',
       this.props,
-      "this is props"
+      'this is props'
     );
     return firestore.doc(`entries/${this.props.city}`);
   }
   get landmarksRef() {
-    return this.entryRef.collection("landmarks");
+    return this.entryRef.collection('landmarks');
   }
-  handleChangeSearch = address => {
-    this.setState({ address });
-  };
   createLandmark = landmark => {
     // const { user } = this.props;
-    this.landmarksRef.add({
+    this.landmarksRef.doc(this.state.address).set({
       ...landmark
       //   user
     });
   };
+  storePictures = pictures => {
+    pictures.forEach(picture => {
+      storage
+        .ref()
+        .child(this.state.address)
+        .child(picture.name)
+        .put(picture);
+    });
+  };
+  handleChangeSearch = address => {
+    this.setState({ address });
+  };
   handleChange = event => {
+    // console.log('EVENT TAGRET IN HANDLE CHANGE', event.target);
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    // console.log('STATE OTHER', this.state);
+  };
+
+  handleFileChange = event => {
+    // console.log('EVENT TAGRET', event.target.files[0]);
+    let file = event.target.files[0];
+    this.setState({ pictures: [...this.state.pictures, file] });
+    console.log('STATE FILE', this.state.pictures);
   };
 
   handleSelect = address => {
@@ -66,19 +85,20 @@ class AddLandmark extends Component {
       .then(() => {
         this.props.updateCoordinates(this.state.coordinates);
       })
-      .catch(error => console.error("Error", error));
+      .catch(error => console.error('Error', error));
   };
 
   handleSubmit = event => {
     event.preventDefault();
+    // console.log('HANDLE SUBMIT', this.state);
     this.createLandmark(this.state);
 
     this.setState({
-      name: "",
-      address: "",
-      content: "",
+      name: '',
+      address: '',
+      content: '',
       date: new Date(),
-      picture: [],
+      pictures: [],
       coordinates: []
     });
   };
@@ -91,7 +111,7 @@ class AddLandmark extends Component {
       ),
       radius: 2000
     };
-    const { name, content, date, picture } = this.state;
+    const { name, content, date, pictures } = this.state;
     return (
       <div>
         <PlacesAutocomplete
@@ -109,19 +129,19 @@ class AddLandmark extends Component {
             <div>
               <input
                 {...getInputProps({
-                  placeholder: "Search For Landmarks...",
-                  className: "location-search-input"
+                  placeholder: 'Search For Landmarks...',
+                  className: 'location-search-input'
                 })}
               />
               <div className="autocomplete-dropdown-container">
                 {suggestions.map(suggestion => {
                   const className = suggestion.active
-                    ? "suggestion-item--active"
-                    : "suggestion-item";
+                    ? 'suggestion-item--active'
+                    : 'suggestion-item';
                   // inline style for demonstration purpose
                   const style = suggestion.active
-                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                    : { backgroundColor: "#ffffff", cursor: "pointer" };
+                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
                   return (
                     <div
                       {...getSuggestionItemProps(suggestion, {
@@ -155,10 +175,10 @@ class AddLandmark extends Component {
           <input
             type="file"
             name="pictures"
-            value={picture}
+            // value={pictures}
             accept="image/png, image/jpeg"
             multiple={true}
-            onChange={this.handleChange}
+            onChange={this.handleFileChange}
           />
           <input className="create" type="submit" value="Create Landmark" />
         </form>

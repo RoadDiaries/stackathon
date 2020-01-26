@@ -1,11 +1,11 @@
 // import "react-dates/initialize";
-import React, { Component } from "react";
-import LocationSearch from "./locationSearch";
-import { firestore } from "../firebase";
-import { collectIdsAndDocs } from "./utilities";
-import Entries from "./allEntries";
+import React, { Component } from 'react';
+import LocationSearch from './locationSearch';
+import { firestore } from '../firebase';
+import { collectIdsAndDocs } from './utilities';
+import Entries from './allEntries';
 
-import { Map } from "./Map";
+import { Map } from './Map';
 
 export class HomePage extends Component {
   constructor() {
@@ -26,18 +26,18 @@ export class HomePage extends Component {
 
   async componentDidMount() {
     const testEntries = await firestore
-      .collection("entries")
-      .doc("NEW YORK")
+      .collection('entries')
+      .doc('NEW YORK')
       .onSnapshot(doc => {
         console.log(doc.data());
       });
-    console.log("BEFORE ENTIRES", testEntries);
-    this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
+    console.log('BEFORE ENTIRES', testEntries);
+    this.unsubscribe = firestore.collection('entries').onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
-      console.log("STATE", entries);
+      console.log('STATE', entries);
 
       this.setState({ entries });
-      console.log("AFTER ENTIRES", testEntries);
+      console.log('AFTER ENTIRES', testEntries);
     });
   }
 
