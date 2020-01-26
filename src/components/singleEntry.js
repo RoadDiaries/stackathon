@@ -2,23 +2,34 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { firestore } from "../firebase";
+import { accessToken } from "./token";
 
-const Entry = ({ id, address, coordinates }) => {
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+
+const MapBoxMap = ReactMapboxGl({ accessToken });
+
+const Entry = ({ id, address, coordinates, updateCoordinates }) => {
   //   const postRef = firestore.doc(`posts/${id}`); //
   //   const remove = () => postRef.delete(); //
+  // console.log(
+  //   "this is what I'm looking for",
+  //   address,
+  //   coordinates,
+  //   handleClick
+  // );
 
   return (
     <li>
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
-<<<<<<< HEAD
-      <div className="Entry--content">
-        <Link to={`/entries/${id}`}>
-          <h3>{address}</h3>
-=======
       <div className="Post--content">
+        <Link to={`/entries/${id}`}>
+          <h3 className="Post--content">{address}</h3>
+        </Link>
+        <button type="submit" onClick={() => updateCoordinates(coordinates)}>
+          CLICK ME{" "}
+        </button>
         <Link className="Post--content" to={`/entries/${id}`}>
           <h3 className="Post--content">{address}</h3>
->>>>>>> cc71fe1d9d366c51a4d29c1dc55a607555c10c0b
         </Link>
       </div>
       <div className="Entry--meta">
