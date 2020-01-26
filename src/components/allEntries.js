@@ -19,22 +19,24 @@ const Entries = ({
   // const entries = useContext(EntriesContext);
   console.log("HERE", entries);
   return (
-    <section className="Posts">
-      <AddEntry updateCoordinates={updateCoordinates} />
-      {/* <Picture /> */}
-      {/* <AddEntry onCreate={onCreate} /> */}
+    <div>
+      <section className="Posts">
+        <AddEntry updateCoordinates={updateCoordinates} />
+        {/* <Picture /> */}
+        {/* <AddEntry onCreate={onCreate} /> */}
 
-      {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
-      <ul className="entry-list">
-        {entries.map(entry => (
-          <Entry
-            {...entry}
-            key={entry.id}
-            updateCoordinates={updateCoordinates}
-          />
-        ))}
-      </ul>
-    </section>
+        {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
+        <ul className="entry-list">
+          {entries.map(entry => (
+            <Entry
+              {...entry}
+              key={entry.id}
+              updateCoordinates={updateCoordinates}
+            />
+          ))}
+        </ul>
+      </section>
+    </div>
   );
 };
 export default Entries;

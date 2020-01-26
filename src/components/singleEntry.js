@@ -22,12 +22,17 @@ const Entry = ({ id, address, coordinates, updateCoordinates }) => {
     <li>
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
       <div className="Post--content">
-        <h3 className="Post--content">{address}</h3>
+        <Link to={`/entries/${id}`}>
+          <h3 className="Post--content">{address}</h3>
+        </Link>
         <button type="submit" onClick={() => updateCoordinates(coordinates)}>
           CLICK ME{" "}
         </button>
+        <Link className="Post--content" to={`/entries/${id}`}>
+          <h3 className="Post--content">{address}</h3>
+        </Link>
       </div>
-      <div className="Post--meta">
+      <div className="Entry--meta">
         <div>
           {/* <p>
             <span role="img" aria-label="star" />
