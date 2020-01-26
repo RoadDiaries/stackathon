@@ -1,12 +1,16 @@
 // import "react-dates/initialize";
-import React, { Component } from 'react';
-import LocationSearch from './locationSearch';
-import { firestore } from '../firebase';
-import { collectIdsAndDocs } from './utilities';
-import Entries from './allEntries';
+import React, { Component } from "react";
+import LocationSearch from "./locationSearch";
+import { firestore } from "../firebase";
+import { collectIdsAndDocs } from "./utilities";
+import Entries from "./allEntries";
+import { Map } from "./Map";
+import MapPopup from "./Pin";
+import { accessToken } from "./token";
 
-import { Map } from './Map';
-import MapPopup from './Pin';
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+
+const MapBoxMap = ReactMapboxGl({ accessToken });
 
 export class HomePage extends Component {
   constructor() {
@@ -27,13 +31,13 @@ export class HomePage extends Component {
 
   async componentDidMount() {
     const testEntries = await firestore
-      .collection('entries')
-      .doc('NEW YORK')
+      .collection("entries")
+      .doc("NEW YORK")
       .onSnapshot(doc => {
         // console.log(doc.data());
       });
     // console.log("BEFORE ENTIRES", testEntries);
-    this.unsubscribe = firestore.collection('entries').onSnapshot(snapshot => {
+    this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
       // console.log("STATE", entries);
 
@@ -76,7 +80,7 @@ export class HomePage extends Component {
           <nav className="nav">
             <form onSubmit={this.onSubmit}>
               <LocationSearch updateCoordinates={this.submitCoordinates} />
-              <button type="submit">Serach</button>
+              <button type="submit">Search</button>
             </form>
             <div className="main-container">
               <Map
@@ -91,6 +95,7 @@ export class HomePage extends Component {
               <Entries
                 entries={entries}
                 updateCoordinates={this.submitCoordinates}
+                handleClick={this.handleClick}
                 // onCreate={this.handleCreate}
                 // onRemove={this.handleRemove}
               />
