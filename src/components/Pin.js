@@ -21,6 +21,7 @@ const MapPopup = props => {
       fontFamily: "Fjalla One"
     }
   });
+  // console.log("this is the landmark", landmark);
   return (
     <Popup
       coordinates={[landmark.coordinates[1], landmark.coordinates[0]]}
