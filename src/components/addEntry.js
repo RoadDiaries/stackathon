@@ -103,11 +103,11 @@ class AddEntry extends Component {
             getSuggestionItemProps,
             loading
           }) => (
-            <div>
+            <div className="search-box">
               <input
+                className="location-search-input"
                 {...getInputProps({
-                  placeholder: "Search for Cities ...",
-                  className: "location-search-input"
+                  placeholder: "Search for Cities ..."
                 })}
               />
               <div className="autocomplete-dropdown-container">
