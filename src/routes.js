@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import App from "./components/app";
 import AddEntry from "./components/addEntry";
 import Landmarks from "./components/landmarks";
+import HomePage from "./components/Home";
 
 /**
  * COMPONENT
@@ -24,7 +25,7 @@ class Routes extends Component {
       <Switch>
         {/* <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} /> */}
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/entries/:id" component={Landmarks} />
         <Route exact path="/newEntry" component={AddEntry} />
         {/* {isLoggedIn && ( */}
