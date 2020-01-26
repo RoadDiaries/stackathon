@@ -3,18 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { firestore } from '../firebase';
 
-const Entry = ({
-  id,
-  city,
-  location,
-  content,
-  user,
-  date,
-  picture,
-  visitDate,
-  coordinates,
-  photos
-}) => {
+const Entry = ({ id, address, coordinates }) => {
   //   const postRef = firestore.doc(`posts/${id}`); //
   //   const remove = () => postRef.delete(); //
 
@@ -23,25 +12,22 @@ const Entry = ({
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
       <div className="Post--content">
         <Link to={`/entries/${id}`}>
-          <h3>{city}</h3>
+          <h3>{address}</h3>
         </Link>
-        {/* <h3>{city}</h3> */}
-        <h2>{location}</h2>
-        <div>{content}</div>
       </div>
       <div className="Post--meta">
         <div>
-          <p>
+          {/* <p>
             <span role="img" aria-label="star" />
             {coordinates}
           </p>
           <p>
             <span role="img" aria-label="photos" />
             {photos}
-          </p>
+          </p> */}
           {/* <p>Posted by {user.displayName}</p> */}
-          <p>Trip Date: {date}</p>
-          <img src={picture} />
+          {/* <p>Trip Date: {date}</p>
+          <img src={picture} /> */}
         </div>
         <div />
         <div>
@@ -51,7 +37,7 @@ const Entry = ({
             onClick={function() {
               return firestore
                 .collection('entries')
-                .doc(city)
+                .doc(address)
                 .delete();
             }}
           >
