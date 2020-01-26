@@ -10,12 +10,12 @@ const Entry = ({ id, address, coordinates }) => {
   return (
     <li>
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
-      <div className="Post--content">
+      <div className="Entry--content">
         <Link to={`/entries/${id}`}>
           <h3>{address}</h3>
         </Link>
       </div>
-      <div className="Post--meta">
+      <div className="Entry--meta">
         <div>
           {/* <p>
             <span role="img" aria-label="star" />
