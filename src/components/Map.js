@@ -50,8 +50,8 @@ export class Map extends React.Component {
         center={this.state.center}
         zoom={this.state.zoom}
         containerStyle={{
-          height: "50vh",
-          width: "50vw"
+          height: "70vh",
+          width: "70vw"
         }}
       ></MapBoxMap>
     );

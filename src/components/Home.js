@@ -22,6 +22,7 @@ export class HomePage extends Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
+  unsubscribe = null;
 
   async componentDidMount() {
     const testEntries = await firestore
@@ -61,6 +62,9 @@ export class HomePage extends Component {
       hoverItem: null
     });
   }
+  componentWillUnmount = () => {
+    this.unsubscribe();
+  };
 
   render() {
     const { entries } = this.state;
