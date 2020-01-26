@@ -73,7 +73,6 @@ export class HomePage extends Component {
 
   render() {
     const { entries } = this.state;
-    console.log(this.state.entries);
     return (
       <div>
         <aside className="sidebar">

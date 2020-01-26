@@ -18,9 +18,14 @@ export class Map extends React.Component {
   }
 
   // componentDidMount() {
-  //   console.log('IN CDM', this.props);
-  //   this.setState({ entries: this.props.entries });
-  //   console.log('nre state', this.state);
+  //   console.log("IN CDM", this.props);
+  //   this.setState({
+  //     selectedPin: {
+  //       id: "Canberra ACT, Australia",
+  //       address: "Canberra ACT, Australia",
+  //       coordinates: [-35.2809368, 149.1300092]
+  //     }
+  //   });
   // }
 
   static getDerivedStateFromProps(nextProps, prevState) {
