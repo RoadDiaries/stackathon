@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { firestore } from '../firebase';
+import { firestore } from "../firebase";
 
 const Entry = ({ id, address, coordinates }) => {
   //   const postRef = firestore.doc(`posts/${id}`); //
@@ -11,8 +11,8 @@ const Entry = ({ id, address, coordinates }) => {
     <li>
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
       <div className="Post--content">
-        <Link to={`/entries/${id}`}>
-          <h3>{address}</h3>
+        <Link className="Post--content" to={`/entries/${id}`}>
+          <h3 className="Post--content">{address}</h3>
         </Link>
       </div>
       <div className="Post--meta">
@@ -36,7 +36,7 @@ const Entry = ({ id, address, coordinates }) => {
             className="delete"
             onClick={function() {
               return firestore
-                .collection('entries')
+                .collection("entries")
                 .doc(address)
                 .delete();
             }}
