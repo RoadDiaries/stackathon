@@ -131,6 +131,7 @@ p {
 .entry-list {
   height: 800px;
   overflow-y: scroll;
+  width: 10%;
 }
 .Post--content {
   color: white;

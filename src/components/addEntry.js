@@ -64,16 +64,15 @@ class AddEntry extends Component {
     const { city, location, content, date, picture } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className="AddEntry">
-        {
-          // <input id="city-search"
-          //   type="text"
-          //   name="city"
-          //   placeholder="City"
-          //   value={city}
-          //   onChange={this.handleChange}
-          // // />
-        }
-        <LocationSearchInput className="input-field" />
+        <input
+          id="city-search"
+          type="text"
+          name="city"
+          placeholder="City"
+          value={city}
+          onChange={this.handleChange}
+        />
+
         <input
           className="input-field"
           type="text"
@@ -113,3 +112,11 @@ class AddEntry extends Component {
 }
 
 export default AddEntry;
+
+//{ <LocationSearchInput
+//   type="text"
+//   className="input-field"
+//   name="city"
+//   value={city}
+//   onChange={this.handleChange}
+// />}
