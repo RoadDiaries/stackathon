@@ -26,12 +26,12 @@ class AddLandmark extends Component {
     this.createLandmark = this.createLandmark.bind(this);
   }
   get entryRef() {
-    console.log(
-      this.state,
-      "this is the state passing down",
-      this.props,
-      "this is props"
-    );
+    // console.log(
+    //   this.state,
+    //   "this is the state passing down",
+    //   this.props,
+    //   "this is props"
+    // );
     return firestore.doc(`entries/${this.props.city}`);
   }
   get landmarksRef() {
