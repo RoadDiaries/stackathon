@@ -11,7 +11,7 @@ const Entries = ({ entries, onCreate, onRemove }) => {
   console.log("HERE", entries);
   return (
     <section className="Posts">
-      {/* <Picture /> */}
+      <Picture />
       {/* <AddEntry onCreate={onCreate} /> */}
 
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}

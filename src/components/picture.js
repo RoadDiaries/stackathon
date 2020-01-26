@@ -10,11 +10,16 @@ class Picture extends Component {
     const images = storage.ref().child('Testing');
     const image = images.child('IMG_7772.jpeg');
     const url = await image.getDownloadURL();
+
+    //
+    const imageObj = await images.listAll();
+    console.log('HERE IN CDM', imageObj.items[1].name);
     this.setState({ img: url });
   };
 
   render() {
     const { img } = this.state;
+    console.log('IMG URL', this.state);
     return (
       <div>
         <img src={img} />
