@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
-import { accessToken } from './token';
-import MapPopup from './Pin';
+import React from "react";
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import { accessToken } from "./token";
+import MapPopup from "./Pin";
 const MapBoxMap = ReactMapboxGl({ accessToken });
 
 export class Map extends React.Component {
   constructor(props) {
     super(props);
-    console.log('props are', this.props);
     this.state = {
       center: [-73.93, 40.73],
-      landmarkPin: [],
-      // entries: [],
+      pinEntry: [],
+      entries: [],
       zoom: [11],
       selectedPin: null
     };
@@ -25,7 +24,7 @@ export class Map extends React.Component {
   // }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { coordinates, event, hoverItem } = nextProps;
+    const { coordinates, landmark, hoverItem } = nextProps;
     if (hoverItem) {
       return {
         ...prevState,
@@ -34,10 +33,10 @@ export class Map extends React.Component {
         zoom: [14]
       };
     }
-    if (event) {
+    if (landmark) {
       return {
         ...prevState,
-        pinEvent: event,
+        pinLandmark: landmark,
         zoom: [12]
       };
     }
@@ -62,18 +61,14 @@ export class Map extends React.Component {
 
   render() {
     const { pinLandmark } = this.state;
-    console.log('IN RENDER', this.props);
-
+    console.log("IN RENDER", this.props);
+    const { entries } = this.props;
     return (
       <MapBoxMap
         // eslint-disable-next-line react/style-prop-object
-        style="mapbox://styles/mapbox/light-v10"
+        style="mapbox://styles/mapbox/dark-v10"
         center={this.state.center}
         zoom={this.state.zoom}
-        containerStyle={{
-          height: '70vh',
-          width: '70vw'
-        }}
       >
         {this.state.selectedPin && (
           <MapPopup landmark={this.state.selectedPin} />
@@ -81,17 +76,18 @@ export class Map extends React.Component {
         <Layer
           type="symbol"
           layout={{
-            'icon-image': 'marker-15',
-            'icon-allow-overlap': true,
-            'icon-size': 2
+            "icon-image": "marker-15",
+
+            "icon-allow-overlap": true,
+            "icon-size": 2
           }}
         >
-          {pinLandmark &&
-            pinLandmark.map(landmark => (
+          {entries &&
+            entries.map(landmark => (
               <Feature
                 coordinates={[
-                  Number(landmark.longitude),
-                  Number(landmark.latitude)
+                  Number(landmark.coordinates[1]),
+                  Number(landmark.coordinates[0])
                 ]}
                 key={landmark.id}
                 onClick={this.onPinCLick.bind(null, landmark)}

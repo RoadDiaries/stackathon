@@ -62,6 +62,7 @@ class AddLandmark extends Component {
   handleFileChange = event => {
     let file = event.target.files[0];
     this.setState({ pictures: [...this.state.pictures, file] });
+    console.log('STATE FILE', this.state.pictures);
   };
 
   handleSelect = address => {
