@@ -1,36 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { firestore } from "../firebase";
-import { accessToken } from "./token";
-
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
-
-const MapBoxMap = ReactMapboxGl({ accessToken });
+import { firestore } from '../firebase';
 
 const Entry = ({ id, address, coordinates, updateCoordinates }) => {
   //   const postRef = firestore.doc(`posts/${id}`); //
   //   const remove = () => postRef.delete(); //
-  // console.log(
-  //   "this is what I'm looking for",
-  //   address,
-  //   coordinates,
-  //   handleClick
-  // );
 
   return (
     <li>
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
       <div className="Post--content">
-        <Link to={`/entries/${id}`}>
-          <h3 className="Post--content">{address}</h3>
-        </Link>
-        <button type="submit" onClick={() => updateCoordinates(coordinates)}>
-          CLICK ME{" "}
-        </button>
         <Link className="Post--content" to={`/entries/${id}`}>
           <h3 className="Post--content">{address}</h3>
         </Link>
+        <button type="submit" onClick={() => updateCoordinates(coordinates)}>
+          CLICK ME
+        </button>
       </div>
       <div className="Entry--meta">
         <div>
@@ -53,7 +39,7 @@ const Entry = ({ id, address, coordinates, updateCoordinates }) => {
             className="delete"
             onClick={function() {
               return firestore
-                .collection("entries")
+                .collection('entries')
                 .doc(address)
                 .delete();
             }}
