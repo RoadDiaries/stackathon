@@ -5,7 +5,12 @@ import { firestore } from '../firebase';
 import { collectIdsAndDocs } from './utilities';
 import Entries from './allEntries';
 
+<<<<<<< HEAD
 import { Map } from './Map';
+=======
+import { Map } from "./Map";
+import MapPopup from "./Pin";
+>>>>>>> e4ea49ca7afb5230670c35e4806048cded5d4102
 
 export class HomePage extends Component {
   constructor() {
@@ -29,8 +34,9 @@ export class HomePage extends Component {
       .collection('entries')
       .doc('NEW YORK')
       .onSnapshot(doc => {
-        console.log(doc.data());
+        // console.log(doc.data());
       });
+<<<<<<< HEAD
     console.log('BEFORE ENTIRES', testEntries);
     this.unsubscribe = firestore.collection('entries').onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
@@ -38,6 +44,15 @@ export class HomePage extends Component {
 
       this.setState({ entries });
       console.log('AFTER ENTIRES', testEntries);
+=======
+    // console.log("BEFORE ENTIRES", testEntries);
+    this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
+      const entries = snapshot.docs.map(collectIdsAndDocs);
+      // console.log("STATE", entries);
+
+      this.setState({ entries });
+      // console.log("AFTER ENTIRES", testEntries);
+>>>>>>> e4ea49ca7afb5230670c35e4806048cded5d4102
     });
   }
 
@@ -68,7 +83,7 @@ export class HomePage extends Component {
 
   render() {
     const { entries } = this.state;
-
+    console.log(this.state.entries);
     return (
       <div>
         <aside className="sidebar">
@@ -79,9 +94,11 @@ export class HomePage extends Component {
             </form>
             <div className="main-container">
               <Map
-                event={this.state.events && this.state.events.event}
-                {...this.props}
-                {...this.state}
+                // landmark={this.state.landmarks && this.state.landmarks.landmark}
+
+                // {...this.props}
+                // {...this.state}
+                entries={entries}
                 coordinates={this.state.coordinates}
                 selectedPin={this.selectedPin}
               />

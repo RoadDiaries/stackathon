@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import SingleEntry from './singleEntry';
-import LandmarkContainer from './landmarkContainer';
-import { firestore } from '../firebase';
-import { collectIdsAndDocs } from '../components/utilities';
+import SingleEntry from "./singleEntry";
+import LandmarkContainer from "./landmarkContainer";
+import { firestore } from "../firebase";
+import { collectIdsAndDocs } from "../components/utilities";
 
 // import { withRouter } from 'react-router-dom';
 // import Landmark from './singleLandmark';
@@ -16,7 +16,7 @@ class Landmarks extends Component {
     return firestore.doc(`entries/${this.props.match.params.id}`);
   }
   get landmarksRef() {
-    return this.entryRef.collection('landmarks');
+    return this.entryRef.collection("landmarks");
   }
   unsubscribeFromEntry = null;
   unsubscribeFromLandmarks = null;
@@ -43,7 +43,7 @@ class Landmarks extends Component {
   };
   render() {
     const { entry, landmarks } = this.state;
-    console.log('IN LANDMARKS', this.props);
+    // console.log('IN LANDMARKS', this.props);
     return (
       <section>
         {entry && <SingleEntry {...entry} />}

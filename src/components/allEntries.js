@@ -10,7 +10,11 @@ import { firestore, storage } from '../firebase';
 // const Entries = () => {
 const Entries = ({ entries, onCreate, onRemove, updateCoordinates }) => {
   // const entries = useContext(EntriesContext);
+<<<<<<< HEAD
   console.log('HERE', entries);
+=======
+  // console.log("HERE", entries);
+>>>>>>> e4ea49ca7afb5230670c35e4806048cded5d4102
   return (
     <section className="Posts">
       <AddEntry updateCoordinates={updateCoordinates} />

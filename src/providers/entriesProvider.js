@@ -1,6 +1,6 @@
-import React, { Component, createContext } from 'react';
-import { firestore } from '../firebase';
-import { collectIdsAndDocs } from '../components/utilities';
+import React, { Component, createContext } from "react";
+import { firestore } from "../firebase";
+import { collectIdsAndDocs } from "../components/utilities";
 
 export const EntriesContext = createContext();
 
@@ -11,10 +11,10 @@ class EntriesProvider extends Component {
 
   componentDidMount = () => {
     this.unsubscribeFromFirestore = firestore
-      .collection('entries')
+      .collection("entries")
       .onSnapshot(snapshot => {
         const entries = snapshot.docs.map(collectIdsAndDocs);
-        console.log('IN PROVIDER', entries);
+        // console.log('IN PROVIDER', entries);
         this.setState({ entries });
       });
   };
