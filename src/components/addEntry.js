@@ -75,7 +75,7 @@ class AddEntry extends Component {
     console.log(entryref);
 
     this.setState({
-      address: "",
+      // address: "",
       coordinates: []
     });
   };
@@ -106,7 +106,7 @@ class AddEntry extends Component {
             <div>
               <input
                 {...getInputProps({
-                  placeholder: "Search Places ...",
+                  placeholder: "Search for Cities ...",
                   className: "location-search-input"
                 })}
               />
@@ -138,7 +138,10 @@ class AddEntry extends Component {
         <form onSubmit={this.handleSubmit} className="AddEntry">
           <input className="create" type="submit" value="Create Entry" />
         </form>
-        <AddLandmark />
+        <AddLandmark
+          updateCoordinates={this.props.updateCoordinates}
+          city={this.state.address}
+        />
       </div>
     );
   }
