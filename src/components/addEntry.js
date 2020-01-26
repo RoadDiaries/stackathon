@@ -33,7 +33,7 @@ class AddEntry extends Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => {
-        console.log("result arer", results);
+        // console.log("result arer", results);
         return getLatLng(results[0]);
       })
       .then(latLng => {
@@ -49,7 +49,7 @@ class AddEntry extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    console.log("this is our state, ", this.state);
+    // console.log("this is our state, ", this.state);
 
     const { address, coordinates } = this.state;
     // const { uid, displayName, email, photoURL } = auth.currentUser || {};
@@ -72,7 +72,7 @@ class AddEntry extends Component {
       .set(entry);
 
     const entryref = firestore.doc(`entries/${entry.address}`);
-    console.log(entryref);
+    // console.log(entryref);
 
     this.setState({
       // address: "",

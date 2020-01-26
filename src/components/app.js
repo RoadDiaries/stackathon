@@ -25,15 +25,15 @@ class App extends Component {
       .collection("entries")
       .doc("NEW YORK")
       .onSnapshot(doc => {
-        console.log(doc.data());
+        // console.log(doc.data());
       });
-    console.log("BEFORE ENTIRES", testEntries);
+    // console.log("BEFORE ENTIRES", testEntries);
     this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
-      console.log("STATE", entries);
+      // console.log("STATE", entries);
 
       this.setState({ entries });
-      console.log("AFTER ENTIRES", testEntries);
+      // console.log("AFTER ENTIRES", testEntries);
     });
   };
 
