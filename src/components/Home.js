@@ -87,6 +87,7 @@ export class HomePage extends Component {
               />
               <Entries
                 entries={entries}
+                updateCoordinates={this.submitCoordinates}
                 // onCreate={this.handleCreate}
                 // onRemove={this.handleRemove}
               />

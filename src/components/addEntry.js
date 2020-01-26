@@ -1,122 +1,156 @@
+/*global google*/
+
 import React, { Component } from "react";
 import { firestore } from "../firebase";
-import LocationSearchInput from "./locationSearch";
+import AddLandmark from "./addLandmark";
+// import LocationSearchInput from "./locationSearch";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  geocodeByPlaceId,
+  getLatLng
+} from "react-places-autocomplete";
 
 class AddEntry extends Component {
-  state = {
-    city: "",
-    location: "",
-    content: "",
-    date: new Date(),
-    picture: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: "",
+      coordinates: []
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
+  handleChangeSearch = address => {
+    this.setState({ address });
+  };
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-
+  handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => {
+        console.log("result arer", results);
+        return getLatLng(results[0]);
+      })
+      .then(latLng => {
+        this.setState({
+          address: address,
+          coordinates: [latLng.lat, latLng.lng]
+        });
+      })
+      .then(() => {
+        this.props.updateCoordinates(this.state.coordinates);
+      })
+      .catch(error => console.error("Error", error));
+  };
   handleSubmit = event => {
     event.preventDefault();
+    console.log("this is our state, ", this.state);
 
-    const { city, location, content, date, picture } = this.state;
+    const { address, coordinates } = this.state;
     // const { uid, displayName, email, photoURL } = auth.currentUser || {};
 
     const entry = {
-      // id: new Date().toString(),
-      city,
-      location,
-      content,
-      date,
-      picture,
-      // title,
-      // city,
-      // country,
-      // dateVisited,
+      address,
+      coordinates,
+
       user: {
         uid: "1111",
         displayName: "John Doe",
         email: "John@gmail.com",
         photoURL: "http://placekitten.com/g/200/200"
-      },
-      coordinates: [-477, 544],
-      visitDate: new Date()
+      }
     };
 
     firestore
       .collection("entries")
-      .doc(entry.city)
+      .doc(entry.address)
       .set(entry);
 
-    const entryref = firestore.doc(`entries/${entry.city}`);
+    const entryref = firestore.doc(`entries/${entry.address}`);
     console.log(entryref);
 
     this.setState({
-      city: "",
-      location: "",
-      content: "",
-      date: new Date(),
-      picture: []
+      address: "",
+      coordinates: []
     });
   };
 
   render() {
-    const { city, location, content, date, picture } = this.state;
-    return (
-      <form onSubmit={this.handleSubmit} className="AddEntry">
-        <input
-          id="city-search"
-          type="text"
-          name="city"
-          placeholder="City"
-          value={city}
-          onChange={this.handleChange}
-        />
+    const searchOptions = {
+      location: new google.maps.LatLng(
+        this.state.coordinates[0],
+        this.state.coordinates[1]
+      ),
+      radius: 2000
+    };
 
-        <input
-          className="input-field"
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={location}
-          onChange={this.handleChange}
-        />
-        <input
-          className="input-field"
-          type="date"
-          name="date"
-          value={date}
-          onChange={this.handleChange}
-        />
-        <input
-          className="input-field"
-          type="text"
-          name="content"
-          placeholder="content"
-          value={content}
-          onChange={this.handleChange}
-        />
-        <input
-          className="input-field"
-          type="file"
-          name="pictures"
-          value={picture}
-          accept="image/png, image/jpeg"
-          multiple={true}
-          onChange={this.handleChange}
-        />
-        <input className="create" type="submit" value="Create Entry" />
-      </form>
+    return (
+      <div>
+        <PlacesAutocomplete
+          value={this.state.address}
+          onChange={this.handleChangeSearch}
+          onSelect={this.handleSelect}
+          searchOptions={searchOptions}
+        >
+          {({
+            getInputProps,
+            suggestions,
+            getSuggestionItemProps,
+            loading
+          }) => (
+            <div>
+              <input
+                {...getInputProps({
+                  placeholder: "Search Places ...",
+                  className: "location-search-input"
+                })}
+              />
+              <div className="autocomplete-dropdown-container">
+                {suggestions.map(suggestion => {
+                  const className = suggestion.active
+                    ? "suggestion-item--active"
+                    : "suggestion-item";
+                  // inline style for demonstration purpose
+                  const style = suggestion.active
+                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                    : { backgroundColor: "#ffffff", cursor: "pointer" };
+                  return (
+                    <div
+                      {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style
+                      })}
+                    >
+                      <span>{suggestion.description}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </PlacesAutocomplete>
+
+        <form onSubmit={this.handleSubmit} className="AddEntry">
+          <input className="create" type="submit" value="Create Entry" />
+        </form>
+        <AddLandmark />
+      </div>
     );
   }
 }
 
 export default AddEntry;
 
-//{ <LocationSearchInput
-//   type="text"
-//   className="input-field"
-//   name="city"
-//   value={city}
-//   onChange={this.handleChange}
-// />}
+//  <input
+//     id="city-search"
+//     type="text"
+//     name="city"
+//     placeholder="City"
+//     value={city}
+//     onChange={this.handleChange}
+//   />
