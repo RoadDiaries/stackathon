@@ -20,6 +20,7 @@ const Entry = ({
 
   return (
     <li>
+      {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
       <div className="Post--content">
         <Link to={`/entries/${id}`}>
           <h3>{city}</h3>
