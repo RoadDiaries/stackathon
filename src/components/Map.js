@@ -1,27 +1,28 @@
-import React from "react";
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
-import { accessToken } from "./token";
-import MapPopup from "./Pin";
+import React from 'react';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import { accessToken } from './token';
+import MapPopup from './Pin';
 const MapBoxMap = ReactMapboxGl({ accessToken });
 
 export class Map extends React.Component {
   constructor(props) {
     super(props);
-    console.log("props are", this.props);
+    console.log('props are', this.props);
     this.state = {
       center: [-73.93, 40.73],
       landmarkPin: [],
-      entries: [],
+      // entries: [],
       zoom: [11],
       selectedPin: null
     };
     this.onPinCLick = this.onPinCLick.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ entries: this.props.entries });
-    console.log("nre state", this.state);
-  }
+  // componentDidMount() {
+  //   console.log('IN CDM', this.props);
+  //   this.setState({ entries: this.props.entries });
+  //   console.log('nre state', this.state);
+  // }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { coordinates, event, hoverItem } = nextProps;
@@ -61,7 +62,7 @@ export class Map extends React.Component {
 
   render() {
     const { pinLandmark } = this.state;
-    console.log(this.state);
+    console.log('IN RENDER', this.props);
 
     return (
       <MapBoxMap
@@ -70,8 +71,8 @@ export class Map extends React.Component {
         center={this.state.center}
         zoom={this.state.zoom}
         containerStyle={{
-          height: "70vh",
-          width: "70vw"
+          height: '70vh',
+          width: '70vw'
         }}
       >
         {this.state.selectedPin && (
@@ -80,9 +81,9 @@ export class Map extends React.Component {
         <Layer
           type="symbol"
           layout={{
-            "icon-image": "marker-15",
-            "icon-allow-overlap": true,
-            "icon-size": 2
+            'icon-image': 'marker-15',
+            'icon-allow-overlap': true,
+            'icon-size': 2
           }}
         >
           {pinLandmark &&
