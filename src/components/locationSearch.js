@@ -23,9 +23,14 @@ class LocationSearchInput extends React.Component {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
-        this.setState({ coordinates: [latLng.lat, latLng.lng] });
+        this.setState({
+          address: address,
+          coordinates: [latLng.lat, latLng.lng]
+        });
       })
       .then(() => {
+        this.props.updateCoordinates(this.state.coordinates);
+
         console.log(this.state);
       })
       .catch(error => console.error("Error", error));
