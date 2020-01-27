@@ -12,11 +12,15 @@ export class Map extends React.Component {
       pinEntry: [],
       entries: [],
       zoom: [11],
-      selectedPin: null
+      selectedPin: null,
+      hasLoaded: false
     };
     this.onPinCLick = this.onPinCLick.bind(this);
   }
 
+  setLoaded = () => {
+    this.setState({ hasLoaded: true });
+  };
   // componentDidMount() {
   //   console.log("IN CDM", this.props);
   //   this.setState({
@@ -66,7 +70,7 @@ export class Map extends React.Component {
 
   render() {
     const { pinLandmark } = this.state;
-    console.log('IN RENDER', this.props);
+    // console.log('IN RENDER', this.props);
     const { entries } = this.props;
     return (
       <MapBoxMap
@@ -75,7 +79,9 @@ export class Map extends React.Component {
         center={this.state.center}
         zoom={this.state.zoom}
       >
-        {this.state.selectedPin && <MapPopup entry={this.state.selectedPin} />}
+        {this.state.selectedPin && (
+          <MapPopup entry={this.state.selectedPin} setLoaded={this.setLoaded} />
+        )}
         <Layer
           type="symbol"
           layout={{
@@ -93,7 +99,7 @@ export class Map extends React.Component {
                   Number(landmark.coordinates[0])
                 ]}
                 key={landmark.id}
-                onClick={this.onPinCLick.bind(null, landmark)}
+                onClick={() => this.onPinCLick(landmark)}
               />
             ))}
         </Layer>

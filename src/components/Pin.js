@@ -10,23 +10,61 @@ class MapPopup extends Component {
   state = {
     landmarks: [],
     landmarksWithPictures: {},
-    URL: []
+    url: []
   };
 
   // console.log('here in pin', props);
   // const { entry } = props;
-  componentDidMount = async () => {
+  // componentDidUpdate = async () => {
+  myFunc = async () => {
+    let newArr = [];
     let landmarksArr = [];
+<<<<<<< HEAD
+    const entryRef = await firestore
+      .collection('entries')
+      .doc(this.props.entry.address)
+      .collection('landmarks')
+      .onSnapshot(async snapshot => {
+        // landmarksArr.push(snapshot.docs.map(collectIdsAndDocs));
+        let newArr = [...this.state.landmarks];
+        let urlarr = [...this.state.url];
+        newArr.push(snapshot.docs.map(collectIdsAndDocs));
+        let landmarkObj = snapshot.docs.map(collectIdsAndDocs);
+        console.log('LANDMARK OBJ', landmarkObj);
+        landmarkObj.forEach(async landmark => {
+          let images = storage.ref().child(landmark.address);
+          let imageObj = await images.listAll();
+          let pictureName = imageObj.items[0].name;
+          let image = images.child(pictureName);
+          let pictureurl = await image.getDownloadURL();
+          console.log('PICTURE url', pictureurl);
+          urlarr.push(pictureurl);
+        });
+        this.setState({
+          landmarks: newArr,
+          url: urlarr
+        });
+        // let landmarkNamE = newArr[0].
+=======
     const entryRef = firestore
       .collection("entries")
       .doc(this.props.entry.address)
       .collection("landmarks")
       .onSnapshot(snapshot => {
         landmarksArr.push(snapshot.docs.map(collectIdsAndDocs));
+>>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
         // [...landmarksArr, snapshot.docs.map(collectIdsAndDocs)];
-        // console.log('AFTER ENTIRES', landmarks);
+        // this.setState({ landmarks: landmarksArr[0] });
+        console.log('AFTER ENTRIES', newArr);
+        this.props.setLoaded();
       });
 
+<<<<<<< HEAD
+    // this.setState({ landmarks: landmarksArr[0] });
+    return newArr;
+  };
+  // };
+=======
     await console.log("AJKAHKJAHDJKHJKD", landmarksArr);
     // console.log('!!!!!!', landmarksArr[0]);
     let URLarr = [];
@@ -40,9 +78,28 @@ class MapPopup extends Component {
       // URLarr.push(pictureURL);
       URLarr.push("TESTING");
     });
+>>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
 
-    this.setState({ landmarks: landmarksArr, URL: URLarr });
+  componentDidMount = async () => {
+    let newArr = await this.myFunc();
   };
+
+  // componentDidUpdate = () => {
+  //   console.log('IN CDU', this.state.landmarks[0]);
+  //   let newArr = this.state.landmarks[0];
+  //   let urlarr = [];
+  //   newArr.forEach(async landmarkObj => {
+  //     let images = storage.ref().child(landmarkObj.address);
+  //     let imageObj = await images.listAll();
+  //     let pictureName = imageObj.items[0].name;
+  //     let image = images.child(pictureName);
+  //     let pictureurl = await image.getDownloadurl();
+  //     console.log('PICTURE url', pictureurl);
+  //     urlarr.push(pictureurl);
+  //     // urlarr.push('TESTING');
+  //   });
+  //   this.setState({ url: urlarr });
+  // };
 
   // let landmarksWithPictures = [];
   // landmarks.forEach(async function(landmark) {
@@ -51,8 +108,8 @@ class MapPopup extends Component {
   //   let pictureName = await images.listAll().items[0].name;
   //   let image = images.child(pictureName);
 
-  //   let pictureURL = await image.getDownloadURL();
-  //   landmarksWithPictures.push(pictureURL);
+  //   let pictureurl = await image.getDownloadurl();
+  //   landmarksWithPictures.push(pictureurl);
   // });
 
   // console.log('HEEEEEEY', landmarksWithPictures);
@@ -61,7 +118,11 @@ class MapPopup extends Component {
 
   // console.log("this is the entry", entry);
   render() {
+<<<<<<< HEAD
+    console.log('THIS STATE', this.state, this.state.url);
+=======
     console.log("THIS STATE", this.state);
+>>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
     const styles = StyleSheet.create({
       container: {
         maxWidth: 200,
@@ -79,6 +140,19 @@ class MapPopup extends Component {
       }
     });
     const { entry } = this.props;
+
+    let popUp = <h1>Loading</h1>;
+    if (this.state.url.length > 0) {
+      popUp = (
+        <img
+          className={css(styles.image)}
+          src={this.state.url[0]}
+          // src={`https://firebasestorage.googleapis.com/v0/b/roaddiaries-24a93.appspot.com/o/Testing%2FScreen%20Shot%202020-01-25%20at%2012.40.27%20PM.png?alt=media&token=a776dc57-d069-41a6-9e08-73694619bb74`}
+          alt={'altpic'}
+        />
+      );
+    }
+
     return (
       <Popup
         coordinates={[entry.coordinates[1], entry.coordinates[0]]}
@@ -86,6 +160,10 @@ class MapPopup extends Component {
         offset={[0, -15]}
       >
         <div className={css(styles.container)}>
+<<<<<<< HEAD
+          {popUp}
+          {/* {entry.user.photourl && (
+=======
           <img
             className={css(styles.image)}
             src={this.state.URL[0]}
@@ -93,18 +171,19 @@ class MapPopup extends Component {
             alt={"altpic"}
           />
           {/* {entry.user.photoURL && (
+>>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
           <div>
             <div>
               <img
                 className={css(styles.image)}
-                src={entry.user.photoURL}
+                src={entry.user.photourl}
                 alt={'altpic'}
               />
             </div>
             <div>
               <img
                 className={css(styles.image)}
-                src={entry.user.photoURL}
+                src={entry.user.photourl}
                 alt={'altpic'}
               />
             </div>
@@ -136,7 +215,7 @@ export default MapPopup;
 //     });
 
 //   //////
-//   let URL = [];
+//   let url = [];
 //   async function test() {
 //     let images = storage.ref().child('Testing');
 
@@ -145,17 +224,17 @@ export default MapPopup;
 //     console.log('PICTURE NAME', pictureName);
 //     let image = images.child(pictureName);
 
-//     let pictureURL = await image.getDownloadURL();
-//     console.log('TESTINGNGMNG<KGKJN', pictureURL);
-//     URL.push(pictureURL);
-//     return URL;
+//     let pictureurl = await image.getDownloadurl();
+//     console.log('TESTINGNGMNG<KGKJN', pictureurl);
+//     url.push(pictureurl);
+//     return url;
 //   }
 
 //   test();
 //   console.log(
 //     'IN FUNCTION!!!!!',
-//     URL
-//     // test().then(() => URL)
+//     url
+//     // test().then(() => url)
 //   );
 
 //   // let landmarksWithPictures = [];
@@ -165,8 +244,8 @@ export default MapPopup;
 //   //   let pictureName = await images.listAll().items[0].name;
 //   //   let image = images.child(pictureName);
 
-//   //   let pictureURL = await image.getDownloadURL();
-//   //   landmarksWithPictures.push(pictureURL);
+//   //   let pictureurl = await image.getDownloadurl();
+//   //   landmarksWithPictures.push(pictureurl);
 //   // });
 
 //   // console.log('HEEEEEEY', landmarksWithPictures);
@@ -199,23 +278,23 @@ export default MapPopup;
 //       <div className={css(styles.container)}>
 //         <img
 //           className={css(styles.image)}
-//           src={`${URL[0]}`}
+//           src={`${url[0]}`}
 //           // src={`https://firebasestorage.googleapis.com/v0/b/roaddiaries-24a93.appspot.com/o/Testing%2FScreen%20Shot%202020-01-25%20at%2012.40.27%20PM.png?alt=media&token=a776dc57-d069-41a6-9e08-73694619bb74`}
 //           alt={'altpic'}
 //         />
-//         {/* {entry.user.photoURL && (
+//         {/* {entry.user.photourl && (
 //           <div>
 //             <div>
 //               <img
 //                 className={css(styles.image)}
-//                 src={entry.user.photoURL}
+//                 src={entry.user.photourl}
 //                 alt={'altpic'}
 //               />
 //             </div>
 //             <div>
 //               <img
 //                 className={css(styles.image)}
-//                 src={entry.user.photoURL}
+//                 src={entry.user.photourl}
 //                 alt={'altpic'}
 //               />
 //             </div>
