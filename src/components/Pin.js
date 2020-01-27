@@ -19,25 +19,24 @@ class MapPopup extends Component {
   myFunc = async () => {
     let newArr = [];
     let landmarksArr = [];
-<<<<<<< HEAD
     const entryRef = await firestore
-      .collection('entries')
+      .collection("entries")
       .doc(this.props.entry.address)
-      .collection('landmarks')
+      .collection("landmarks")
       .onSnapshot(async snapshot => {
         // landmarksArr.push(snapshot.docs.map(collectIdsAndDocs));
         let newArr = [...this.state.landmarks];
         let urlarr = [...this.state.url];
         newArr.push(snapshot.docs.map(collectIdsAndDocs));
         let landmarkObj = snapshot.docs.map(collectIdsAndDocs);
-        console.log('LANDMARK OBJ', landmarkObj);
+        console.log("LANDMARK OBJ", landmarkObj);
         landmarkObj.forEach(async landmark => {
           let images = storage.ref().child(landmark.address);
           let imageObj = await images.listAll();
           let pictureName = imageObj.items[0].name;
           let image = images.child(pictureName);
           let pictureurl = await image.getDownloadURL();
-          console.log('PICTURE url', pictureurl);
+          console.log("PICTURE url", pictureurl);
           urlarr.push(pictureurl);
         });
         this.setState({
@@ -45,40 +44,16 @@ class MapPopup extends Component {
           url: urlarr
         });
         // let landmarkNamE = newArr[0].
-=======
-    const entryRef = firestore
-      .collection("entries")
-      .doc(this.props.entry.address)
-      .collection("landmarks")
-      .onSnapshot(snapshot => {
-        landmarksArr.push(snapshot.docs.map(collectIdsAndDocs));
->>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
         // [...landmarksArr, snapshot.docs.map(collectIdsAndDocs)];
         // this.setState({ landmarks: landmarksArr[0] });
-        console.log('AFTER ENTRIES', newArr);
+        console.log("AFTER ENTRIES", newArr);
         this.props.setLoaded();
       });
 
-<<<<<<< HEAD
     // this.setState({ landmarks: landmarksArr[0] });
     return newArr;
   };
   // };
-=======
-    await console.log("AJKAHKJAHDJKHJKD", landmarksArr);
-    // console.log('!!!!!!', landmarksArr[0]);
-    let URLarr = [];
-    landmarksArr.forEach(landmarkObj => {
-      // let images = storage.ref().child(landmarkObj.address);
-      // let imageObj = await images.listAll();
-      // let pictureName = imageObj.items[0].name;
-      // let image = images.child(pictureName);
-      // let pictureURL = await image.getDownloadURL();
-      // console.log('PICTURE URL', pictureURL);
-      // URLarr.push(pictureURL);
-      URLarr.push("TESTING");
-    });
->>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
 
   componentDidMount = async () => {
     let newArr = await this.myFunc();
@@ -118,11 +93,7 @@ class MapPopup extends Component {
 
   // console.log("this is the entry", entry);
   render() {
-<<<<<<< HEAD
-    console.log('THIS STATE', this.state, this.state.url);
-=======
-    console.log("THIS STATE", this.state);
->>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
+    console.log("THIS STATE", this.state, this.state.url);
     const styles = StyleSheet.create({
       container: {
         maxWidth: 200,
@@ -148,7 +119,7 @@ class MapPopup extends Component {
           className={css(styles.image)}
           src={this.state.url[0]}
           // src={`https://firebasestorage.googleapis.com/v0/b/roaddiaries-24a93.appspot.com/o/Testing%2FScreen%20Shot%202020-01-25%20at%2012.40.27%20PM.png?alt=media&token=a776dc57-d069-41a6-9e08-73694619bb74`}
-          alt={'altpic'}
+          alt={"altpic"}
         />
       );
     }
@@ -160,18 +131,8 @@ class MapPopup extends Component {
         offset={[0, -15]}
       >
         <div className={css(styles.container)}>
-<<<<<<< HEAD
           {popUp}
           {/* {entry.user.photourl && (
-=======
-          <img
-            className={css(styles.image)}
-            src={this.state.URL[0]}
-            // src={`https://firebasestorage.googleapis.com/v0/b/roaddiaries-24a93.appspot.com/o/Testing%2FScreen%20Shot%202020-01-25%20at%2012.40.27%20PM.png?alt=media&token=a776dc57-d069-41a6-9e08-73694619bb74`}
-            alt={"altpic"}
-          />
-          {/* {entry.user.photoURL && (
->>>>>>> d864c39e6069a7e9c7cd0ddef2b47fc76417737e
           <div>
             <div>
               <img
