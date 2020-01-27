@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { firestore } from '../firebase';
+import { firestore } from "../firebase";
 
 const Entry = ({ id, address, coordinates, updateCoordinates }) => {
   //   const postRef = firestore.doc(`posts/${id}`); //
@@ -14,32 +14,18 @@ const Entry = ({ id, address, coordinates, updateCoordinates }) => {
         <Link className="Post--content" to={`/entries/${id}`}>
           <h3 className="Post--content">{address}</h3>
         </Link>
-        <button type="submit" onClick={() => updateCoordinates(coordinates)}>
-          CLICK ME
-        </button>
       </div>
       <div className="Entry--meta">
         <div>
-          {/* <p>
-            <span role="img" aria-label="star" />
-            {coordinates}
-          </p>
-          <p>
-            <span role="img" aria-label="photos" />
-            {photos}
-          </p> */}
-          {/* <p>Posted by {user.displayName}</p> */}
-          {/* <p>Trip Date: {date}</p>
-          <img src={picture} /> */}
-        </div>
-        <div />
-        <div>
+          <button type="submit" onClick={() => updateCoordinates(coordinates)}>
+            Show In Map
+          </button>
           <button
             type="button"
             className="delete"
             onClick={function() {
               return firestore
-                .collection('entries')
+                .collection("entries")
                 .doc(address)
                 .delete();
             }}

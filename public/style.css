@@ -125,7 +125,7 @@ p {
   justify-content: space-between;
   height: 40px;
   align-items: center;
-  margin: 10px;
+  margin: 1px;
 }
 .entry-list {
   height: 700px;
@@ -301,4 +301,7 @@ h2 {
 }
 p.user-info {
   color: white;
+}
+.delete {
+  margin: 20px;
 }
