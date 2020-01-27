@@ -10,7 +10,7 @@ import { collectIdsAndDocs } from '../components/utilities';
 // import withUser from './withUser';
 
 class Landmarks extends Component {
-  state = { entry: null, landmarks: [] };
+  state = { entry: null, landmarks: [], pictureNames: [] };
 
   get entryRef() {
     return firestore.doc(`entries/${this.props.city}`);
@@ -30,10 +30,17 @@ class Landmarks extends Component {
       const landmarks = snapshot.docs.map(collectIdsAndDocs);
       this.setState({ landmarks });
     });
+    this.unsubscribeFromPictureNames = this.landmarksRef.onSnapshot(
+      snapshot => {
+        const pictureNames = snapshot.docs.map(collectIdsAndDocs);
+        this.setState({ pictureNames });
+      }
+    );
   };
   componentWillUnmount = () => {
     this.unsubscribeFromEntry();
     this.unsubscribeFromLandmarks();
+    this.unsubscribeFromPictureNames();
   };
   createLandmark = landmark => {
     // const { user } = this.props;
@@ -43,14 +50,15 @@ class Landmarks extends Component {
     });
   };
   render() {
-    const { entry, landmarks } = this.state;
-    // console.log('IN LANDMARKS', this.props);
+    const { entry, landmarks, pictureNames } = this.state;
+    console.log('IN LANDMARKS', this.props, landmarks);
     return (
       <section>
         {entry && <SingleEntry {...entry} />}
         <LandmarkContainer
           city={this.props.city}
           landmarks={landmarks}
+          pictureNames={pictureNames}
           onCreate={this.createLandmark}
         />
       </section>

@@ -10,7 +10,8 @@ const Landmark = ({
   date,
   picture,
   visitDate,
-  coordinates
+  coordinates,
+  pictureNames
 }) => {
   //   const postRef = firestore.doc(`posts/${id}`); //
   //   const remove = () => postRef.delete(); //
@@ -21,7 +22,7 @@ const Landmark = ({
         <h3>{name}</h3>
         <h2>{address}</h2>
         <div>{content}</div>
-        <Picture address={address} />
+        <Picture address={address} pictureNames={pictureNames} />
       </div>
       <div className="Post--meta">
         <div>
