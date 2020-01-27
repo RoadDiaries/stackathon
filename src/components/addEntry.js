@@ -10,6 +10,7 @@ import PlacesAutocomplete, {
   geocodeByPlaceId,
   getLatLng
 } from "react-places-autocomplete";
+import Map from "./Map";
 
 class AddEntry extends Component {
   constructor(props) {
@@ -140,7 +141,6 @@ class AddEntry extends Component {
                 </div>
               )}
             </PlacesAutocomplete>
-
             <form onSubmit={this.handleSubmit} className="AddEntry">
               <input className="create" type="submit" value="Create Entry" />
             </form>
@@ -148,6 +148,10 @@ class AddEntry extends Component {
             <AddLandmark
               updateCoordinates={this.props.updateCoordinates}
               city={this.state.address}
+            />
+            <Map
+              coordinates={this.state.coordinates}
+              selectedPin={this.selectedPin}
             />
           </div>
         </div>
