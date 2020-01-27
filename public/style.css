@@ -242,3 +242,7 @@ input {
   background-image: url("http://www.fromental.co.uk/wp-content/uploads/2015/08/World-Traveller-April-2015-11.jpg");
   height: 800px;
 }
+.both-forms {
+  width: 59%;
+  background-color: lightblue;
+}
