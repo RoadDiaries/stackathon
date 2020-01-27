@@ -4,7 +4,7 @@ export const AddedToMap = () => {
   const { addToast } = useToasts();
   return (
     <button
-      className="create"
+      className="create-entry"
       type="submit"
       value="Create Entry"
       onClick={() =>

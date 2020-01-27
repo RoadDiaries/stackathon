@@ -12,8 +12,8 @@ const CurrentUser = ({ displayName, photoURL, email, createdAt, children }) => {
         )}
         <div className="CurrentUser--information">
           <h2>{displayName}</h2>
-          <p className="email">{email}</p>
-          <p className="created-at">Last Seen {moment(createdAt).calendar()}</p>
+          <p className="user-info">{email}</p>
+          <p className="user-info">Last Seen {moment(createdAt).calendar()}</p>
         </div>
       </div>
       <div>

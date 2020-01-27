@@ -60,8 +60,8 @@ class AddLandmark extends Component {
     // console.log('STATE OTHER', this.state);
   };
 
-  handleFileChange = event => {
-    let file = event.target.files[0];
+  handleFileChange = file => {
+    // let file = event.target.files[0];
     this.setState({ pictures: [...this.state.pictures, file] });
     console.log("STATE FILE", this.state.pictures);
   };
@@ -88,7 +88,8 @@ class AddLandmark extends Component {
     // console.log('HANDLE SUBMIT', this.state);
     const content = this.state.content;
     const address = this.state.address;
-    this.createLandmark({ content, address });
+    const pictures = this.state.pictures;
+    this.createLandmark({ content, address, pictures });
     this.storePictures(this.state.pictures);
 
     // this.setState({
@@ -128,6 +129,7 @@ class AddLandmark extends Component {
             }) => (
               <div>
                 <input
+                  className="land-search"
                   {...getInputProps({
                     placeholder: "Search For Landmarks...",
                     className: "location-search-input"
@@ -205,13 +207,15 @@ class AddLandmark extends Component {
 
         <form onSubmit={this.handleSubmit} className="AddLandmark">
           <input
+            className="add-desc"
             type="text"
             name="content"
-            placeholder="content"
+            placeholder="Share some details about your trip"
             value={content}
             onChange={this.handleChange}
           />
           <input
+            className="create-date"
             type="date"
             name="date"
             value={date}
@@ -220,10 +224,14 @@ class AddLandmark extends Component {
 
           <MyDropzone
             multiple={true}
-            onChange={this.handleFileChange}
+            handleFileChange={this.handleFileChange}
             state={this.state}
           />
-          <input className="create" type="submit" value="Create Landmark" />
+          <input
+            className="create-land"
+            type="submit"
+            value="Create Landmark"
+          />
         </form>
       </div>
     );

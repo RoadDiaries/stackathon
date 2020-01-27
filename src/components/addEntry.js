@@ -143,7 +143,11 @@ class AddEntry extends Component {
               )}
             </PlacesAutocomplete>
             <form onSubmit={this.handleSubmit} className="AddEntry">
-              <button className="create" type="submit" value="Create Entry">
+              <button
+                className="create-entry"
+                type="submit"
+                value="Create Entry"
+              >
                 <AddedToMap />
               </button>
             </form>
@@ -151,10 +155,6 @@ class AddEntry extends Component {
             <AddLandmark
               updateCoordinates={this.props.updateCoordinates}
               city={this.state.address}
-            />
-            <Map
-              coordinates={this.state.coordinates}
-              selectedPin={this.selectedPin}
             />
           </div>
         </div>
