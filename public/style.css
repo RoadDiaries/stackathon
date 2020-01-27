@@ -246,3 +246,6 @@ input {
   width: 59%;
   background-color: lightblue;
 }
+.CurrentUser-pic {
+  height: 100px;
+}
