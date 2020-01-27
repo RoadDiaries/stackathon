@@ -1,14 +1,15 @@
 // import "react-dates/initialize";
-import React, { Component } from 'react';
-import LocationSearch from './locationSearch';
-import { firestore } from '../firebase';
-import { collectIdsAndDocs } from './utilities';
-import Entries from './allEntries';
-import { Map } from './Map';
-import MapPopup from './Pin';
-import { accessToken } from './token';
+import React, { Component } from "react";
+import LocationSearch from "./locationSearch";
+import { firestore, auth } from "../firebase";
+import { collectIdsAndDocs } from "./utilities";
+import Entries from "./allEntries";
+import { Map } from "./Map";
+import MapPopup from "./Pin";
+import { accessToken } from "./token";
 
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import Authentication from "./Authentication";
 
 const MapBoxMap = ReactMapboxGl({ accessToken });
 
@@ -16,6 +17,7 @@ export class HomePage extends Component {
   constructor() {
     super();
     this.state = {
+      user: null,
       coordinates: [],
       zoom: [10],
       center: [],
@@ -29,12 +31,15 @@ export class HomePage extends Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
   unsubscribe = null;
-
+  unsubscribeFromAuth = null;
   async componentDidMount() {
-    this.unsubscribe = firestore.collection('entries').onSnapshot(snapshot => {
+    this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
       this.setState({ entries });
-      console.log('AFTER ENTIRES', this.state);
+      console.log("AFTER ENTIRES", this.state);
+    });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      this.setState({ user });
     });
   }
 
@@ -67,6 +72,7 @@ export class HomePage extends Component {
     const { entries } = this.state;
     return (
       <div className="main-container">
+        <Authentication user={this.state.user} />
         <aside className="sidebar">
           <Entries
             entries={entries}

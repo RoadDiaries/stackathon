@@ -10,8 +10,7 @@ export const AddedToMap = () => {
       onClick={() =>
         addToast("Success! A New Entry was just added to the map", {
           appearance: "success",
-          autoDismiss: true,
-          PlacementType: "bottom-center"
+          autoDismiss: true
         })
       }
     >

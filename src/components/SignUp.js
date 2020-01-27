@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { singInWithGoogle } from "../firebase";
 
-class SignIn extends Component {
-  state = { email: "", password: "" };
+class SignUp extends Component {
+  state = { displayName: "", email: "", password: "" };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -13,15 +12,22 @@ class SignIn extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.setState({ email: "", password: "" });
+    this.setState({ displayName: "", email: "", password: "" });
   };
 
   render() {
-    const { email, password } = this.state;
+    const { displayName, email, password } = this.state;
 
     return (
-      <form className="SignIn" onSubmit={this.handleSubmit}>
-        <h2>Sign In</h2>
+      <form className="SignUp" onSubmit={this.handleSubmit}>
+        <h2>Sign Up</h2>
+        <input
+          type="text"
+          name="displayName"
+          placeholder="Display Name"
+          value={displayName}
+          onChange={this.handleChange}
+        />
         <input
           type="email"
           name="email"
@@ -36,11 +42,10 @@ class SignIn extends Component {
           value={password}
           onChange={this.handleChange}
         />
-        <input type="submit" value="Sign In" />
-        <button onClick={singInWithGoogle}>Sign In With Google</button>
+        <input type="submit" value="Sign Up" />
       </form>
     );
   }
 }
 
-export default SignIn;
+export default SignUp;
