@@ -130,19 +130,22 @@
 
 // export default App;
 
-import React from 'react';
+import React from "react";
+import { ToastProvider, useToasts } from "react-toast-notifications";
 
-import { Navbar } from './components';
-import Routes from './routes';
-import { withRouter, Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Navbar } from "./components";
+import Routes from "./routes";
+import { withRouter, Route, Switch, BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div>
-        <Navbar />
-        <Routes />
-      </div>
+      <ToastProvider>
+        <div>
+          <Navbar />
+          <Routes />
+        </div>
+      </ToastProvider>
     </BrowserRouter>
   );
 };

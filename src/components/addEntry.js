@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import { firestore } from "../firebase";
 import AddLandmark from "./addLandmark";
+import { AddedToMap } from "./toasts";
 // import LocationSearchInput from "./locationSearch";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -142,7 +143,9 @@ class AddEntry extends Component {
               )}
             </PlacesAutocomplete>
             <form onSubmit={this.handleSubmit} className="AddEntry">
-              <input className="create" type="submit" value="Create Entry" />
+              <button className="create" type="submit" value="Create Entry">
+                <AddedToMap />
+              </button>
             </form>
 
             <AddLandmark
