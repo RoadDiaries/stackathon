@@ -8,6 +8,13 @@ const Navbar = () => (
         <div />
         {/* The navbar will show these links before you log in */}
         <div className="main-nav">
+          <img
+            className="logo-pic"
+            src={
+              "https://robertdall.com/wp-content/uploads/2016/12/RD-Logo-Background.png"
+            }
+            alt="logo"
+          />
           <Link to="/">Home</Link>
           <Link to="/newEntry">New Entry</Link>
           <Link to="/login">Login</Link>

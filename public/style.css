@@ -25,7 +25,8 @@ form div {
 html {
   font-family: Arial;
   font-size: 16px;
-  background: #659dbd;
+  /* background: #659dbd; */
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Zaq7p2dG5Hs_26Cnl25nA36YLu50-acSZPvEZZf2m-srf63hpQ&s");
 }
 
 .sidebar {
@@ -102,7 +103,7 @@ p {
   text-transform: uppercase;
   font-size: 1em;
   letter-spacing: 0.1em;
-  color: #fff;
+  color: black;
   font-weight: bold;
   margin-top: 20px;
 }
@@ -121,9 +122,10 @@ p {
 }
 .main-nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   height: 40px;
   align-items: center;
+  margin: 10px;
 }
 .entry-list {
   height: 700px;
@@ -185,7 +187,7 @@ body {
 }
 .search-box {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .mapboxgl-map {
   display: flex;
@@ -200,6 +202,7 @@ body {
   width: 50%;
   height: 20px;
   border-radius: 8px;
+  font-weight: 800;
 }
 input {
   width: 50%;
@@ -235,17 +238,67 @@ input {
 }
 .landmard-src {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .testing {
-  width: 1200px;
-  background-image: url("http://www.fromental.co.uk/wp-content/uploads/2015/08/World-Traveller-April-2015-11.jpg");
+  width: 100%;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Zaq7p2dG5Hs_26Cnl25nA36YLu50-acSZPvEZZf2m-srf63hpQ&s");
   height: 800px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
 }
 .both-forms {
-  width: 59%;
-  background-color: lightblue;
+  width: 30%;
+  height: 400px;
+  /* background-color: #0d87cefa; */
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 5px 10px black;
+  border-radius: 40px;
+  justify-content: space-evenly;
 }
 .CurrentUser-pic {
   height: 100px;
+}
+.create,
+.drop-zone {
+  align-self: center;
+}
+
+.add-desc {
+  background-color: white;
+  font-weight: 800;
+  width: 80%;
+  height: 100px;
+  align-self: center;
+}
+.create-land {
+  align-self: center;
+  height: 35px;
+  font-size: 16px;
+  background: #3b5998;
+  color: white;
+  font-weight: 800;
+}
+.create-entry {
+  align-self: center;
+  height: 35px;
+  font-size: 16px;
+  background: #3b5998;
+  color: white;
+  font-weight: 800;
+  border-radius: 9px;
+}
+.create-date {
+  align-self: center;
+  width: 115px;
+}
+.logo-pic {
+  height: 29px;
+}
+h2 {
+  color: white;
+}
+p.user-info {
+  color: white;
 }

@@ -66,14 +66,15 @@ export class HomePage extends Component {
   }
   componentWillUnmount = () => {
     this.unsubscribe();
+    this.unsubscribeFromAuth();
   };
 
   render() {
     const { entries } = this.state;
     return (
       <div className="main-container">
-        <Authentication user={this.state.user} />
         <aside className="sidebar">
+          <Authentication user={this.state.user} />
           <Entries
             entries={entries}
             updateCoordinates={this.submitCoordinates}
