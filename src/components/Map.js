@@ -1,7 +1,7 @@
-import React from "react";
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
-import { accessToken } from "./token";
-import MapPopup from "./Pin";
+import React from 'react';
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import { accessToken } from './token';
+import MapPopup from './Pin';
 const MapBoxMap = ReactMapboxGl({ accessToken });
 
 export class Map extends React.Component {
@@ -66,7 +66,7 @@ export class Map extends React.Component {
 
   render() {
     const { pinLandmark } = this.state;
-    console.log("IN RENDER", this.props);
+    console.log('IN RENDER', this.props);
     const { entries } = this.props;
     return (
       <MapBoxMap
@@ -75,16 +75,14 @@ export class Map extends React.Component {
         center={this.state.center}
         zoom={this.state.zoom}
       >
-        {this.state.selectedPin && (
-          <MapPopup landmark={this.state.selectedPin} />
-        )}
+        {this.state.selectedPin && <MapPopup entry={this.state.selectedPin} />}
         <Layer
           type="symbol"
           layout={{
-            "icon-image": "marker-15",
+            'icon-image': 'marker-15',
 
-            "icon-allow-overlap": true,
-            "icon-size": 2
+            'icon-allow-overlap': true,
+            'icon-size': 2
           }}
         >
           {entries &&

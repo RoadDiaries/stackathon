@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import { firestore, storage } from "../firebase";
+import React, { Component } from 'react';
+import { firestore, storage } from '../firebase';
 
 class Picture extends Component {
   state = {
-    img: ""
+    img: ''
   };
 
   componentDidMount = async () => {
-    const images = storage.ref().child("Testing");
-    const image = images.child("IMG_7772.jpeg");
+    const images = storage.ref().child('Testing');
+    const image = images.child('IMG_7772.jpeg');
     const url = await image.getDownloadURL();
 
-    //
     const imageObj = await images.listAll();
-    // console.log('HERE IN CDM', imageObj.items[1].name);
+    console.log('HERE IN CDM', imageObj.items[0].name); //, imageObj.items[1].name);
     this.setState({ img: url });
   };
 
