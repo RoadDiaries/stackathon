@@ -8,6 +8,7 @@ import App from './components/app';
 import AddEntry from './components/addEntry';
 import Landmarks from './components/landmarks';
 import HomePage from './components/Home';
+import Picture from './components/picture';
 
 /**
  * COMPONENT
@@ -31,7 +32,7 @@ class Routes extends Component {
           path="/entries/:id"
           render={routeProps => <Landmarks city={routeProps.match.params.id} />}
         />
-        {/* <Route exact path="/entries/:id" component={Landmarks} /> */}
+        <Route exact path="/picture" component={Picture} />
         <Route exact path="/newEntry" component={AddEntry} />
         {/* {isLoggedIn && ( */}
         {/* <Switch> */}
