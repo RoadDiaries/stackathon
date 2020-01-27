@@ -49,6 +49,7 @@ class MapPopup extends Component {
         console.log("AFTER ENTRIES", newArr);
         this.props.setLoaded();
       });
+    this.props.setLoaded();
 
     // this.setState({ landmarks: landmarksArr[0] });
     return newArr;
