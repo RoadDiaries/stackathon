@@ -7,6 +7,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from "react-places-autocomplete";
 import { firestore, storage } from "../firebase";
+import { MyDropzone } from "./dropZone";
 
 class AddLandmark extends Component {
   constructor(props) {
@@ -216,12 +217,11 @@ class AddLandmark extends Component {
             value={date}
             onChange={this.handleChange}
           />
-          <input
-            type="file"
-            name="pictures"
-            accept="image/png, image/jpeg"
+
+          <MyDropzone
             multiple={true}
             onChange={this.handleFileChange}
+            state={this.state}
           />
           <input className="create" type="submit" value="Create Landmark" />
         </form>
@@ -231,3 +231,11 @@ class AddLandmark extends Component {
 }
 
 export default AddLandmark;
+
+// <input
+// type="file"
+// name="pictures"
+// accept="image/png, image/jpeg"
+// multiple={true}
+// onChange={this.handleFileChange}
+// />
