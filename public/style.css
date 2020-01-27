@@ -16,7 +16,7 @@ nav a {
 }
 
 form div {
-  margin: 1em;
+  /* margin: 1em; */
   display: inline-block;
 }
 
@@ -34,17 +34,14 @@ html {
   background: #312450;
   font-size: 0.65em;
   display: flex;
+  border-right: 5px solid #111430;
 }
 .main {
   display: flex;
 }
 
 .nav {
-  position: relative;
-  margin: 0 15%;
   text-align: right;
-  top: 50%;
-  transform: translateY(-50%);
   font-weight: bold;
 }
 
@@ -129,9 +126,9 @@ p {
   align-items: center;
 }
 .entry-list {
-  height: 600px;
+  height: 700px;
   overflow-y: scroll;
-  width: 40%;
+  width: 75%;
 }
 .Post--content {
   color: white;
@@ -141,7 +138,7 @@ p {
   flex-direction: column;
   width: 100%;
   align-items: center;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 .input-field {
   margin: 7px;
@@ -182,26 +179,66 @@ body {
 .AddLandmark {
   display: flex;
   flex-direction: column;
-  width: 54%;
+  width: 100%;
   border-radius: 8px;
+  align-items: flex-end;
 }
 .search-box {
   display: flex;
+  justify-content: flex-end;
 }
 .mapboxgl-map {
   display: flex;
-  height: 100vh;
-  width: 130vh;
+  height: 95vh;
+  width: 80vw;
 }
 .main-container {
   display: flex;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
 }
 .location-search-input {
   width: 50%;
+  height: 20px;
   border-radius: 8px;
 }
 input {
+  width: 50%;
+  height: 20px;
   border-radius: 8px;
   margin: 5px;
+}
+.Places-head {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  background-color: peru;
+}
+.main-page {
+  width: 50%;
+}
+.main-search-comp {
+  height: 30px;
+}
+.search-btn {
+  height: 34px;
+  border-radius: 8px;
+  width: 67px;
+}
+.entry-form-container {
+  background-image: linear-gradient(#4ecdc4, #556270);
+  height: 800px;
+}
+.form-pic {
+  height: 742px;
+  width: 625px;
+}
+.landmard-src {
+  display: flex;
+  justify-content: flex-end;
+}
+.testing {
+  width: 1200px;
+  background-image: url("http://www.fromental.co.uk/wp-content/uploads/2015/08/World-Traveller-April-2015-11.jpg");
+  height: 800px;
 }

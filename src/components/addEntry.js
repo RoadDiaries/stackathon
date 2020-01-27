@@ -91,58 +91,66 @@ class AddEntry extends Component {
     };
 
     return (
-      <div>
-        <PlacesAutocomplete
-          value={this.state.address}
-          onChange={this.handleChangeSearch}
-          onSelect={this.handleSelect}
-          searchOptions={searchOptions}
-        >
-          {({
-            getInputProps,
-            suggestions,
-            getSuggestionItemProps,
-            loading
-          }) => (
-            <div className="search-box">
-              <input
-                className="location-search-input"
-                {...getInputProps({
-                  placeholder: "Search for Cities ..."
-                })}
-              />
-              <div className="autocomplete-dropdown-container">
-                {suggestions.map(suggestion => {
-                  const className = suggestion.active
-                    ? "suggestion-item--active"
-                    : "suggestion-item";
-                  // inline style for demonstration purpose
-                  const style = suggestion.active
-                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                    : { backgroundColor: "#ffffff", cursor: "pointer" };
-                  return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style
-                      })}
-                    >
-                      <span>{suggestion.description}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </PlacesAutocomplete>
+      <div
+        className="entry-form-container
+      "
+      >
+        <div className="testing">
+          <div className="both-forms">
+            <PlacesAutocomplete
+              value={this.state.address}
+              onChange={this.handleChangeSearch}
+              onSelect={this.handleSelect}
+              searchOptions={searchOptions}
+            >
+              {({
+                getInputProps,
+                suggestions,
+                getSuggestionItemProps,
+                loading
+              }) => (
+                <div className="search-box">
+                  <input
+                    className="location-search-input"
+                    {...getInputProps({
+                      placeholder: "Search for Cities ..."
+                    })}
+                  />
+                  <div className="autocomplete-dropdown-container">
+                    {suggestions.map(suggestion => {
+                      const className = suggestion.active
+                        ? "suggestion-item--active"
+                        : "suggestion-item";
+                      // inline style for demonstration purpose
+                      const style = suggestion.active
+                        ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                        : { backgroundColor: "#ffffff", cursor: "pointer" };
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            className,
+                            style
+                          })}
+                        >
+                          <span>{suggestion.description}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </PlacesAutocomplete>
 
-        <form onSubmit={this.handleSubmit} className="AddEntry">
-          <input className="create" type="submit" value="Create Entry" />
-        </form>
-        <AddLandmark
-          updateCoordinates={this.props.updateCoordinates}
-          city={this.state.address}
-        />
+            <form onSubmit={this.handleSubmit} className="AddEntry">
+              <input className="create" type="submit" value="Create Entry" />
+            </form>
+
+            <AddLandmark
+              updateCoordinates={this.props.updateCoordinates}
+              city={this.state.address}
+            />
+          </div>
+        </div>
       </div>
     );
   }
