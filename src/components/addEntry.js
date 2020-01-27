@@ -4,12 +4,14 @@ import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import { firestore } from "../firebase";
 import AddLandmark from "./addLandmark";
+import { AddedToMap } from "./toasts";
 // import LocationSearchInput from "./locationSearch";
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
   getLatLng
 } from "react-places-autocomplete";
+import Map from "./Map";
 
 class AddEntry extends Component {
   constructor(props) {
@@ -140,14 +142,19 @@ class AddEntry extends Component {
                 </div>
               )}
             </PlacesAutocomplete>
-
             <form onSubmit={this.handleSubmit} className="AddEntry">
-              <input className="create" type="submit" value="Create Entry" />
+              <button className="create" type="submit" value="Create Entry">
+                <AddedToMap />
+              </button>
             </form>
 
             <AddLandmark
               updateCoordinates={this.props.updateCoordinates}
               city={this.state.address}
+            />
+            <Map
+              coordinates={this.state.coordinates}
+              selectedPin={this.selectedPin}
             />
           </div>
         </div>
