@@ -1,20 +1,20 @@
 /*global google*/
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
   getLatLng
-} from 'react-places-autocomplete';
-import { firestore, storage } from '../firebase';
+} from "react-places-autocomplete";
+import { firestore, storage } from "../firebase";
 
 class AddLandmark extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      address: '',
-      content: '',
+      name: "",
+      address: "",
+      content: "",
       date: new Date(),
       pictures: [],
       coordinates: []
@@ -27,11 +27,11 @@ class AddLandmark extends Component {
     this.createLandmark = this.createLandmark.bind(this);
   }
   get entryRef() {
-    console.log('HEEEEERE', this.props); //, this.props.match.params.id);
+    console.log("HEEEEERE", this.props); //, this.props.match.params.id);
     return firestore.doc(`entries/${this.props.city}`);
   }
   get landmarksRef() {
-    return this.entryRef.collection('landmarks');
+    return this.entryRef.collection("landmarks");
   }
   createLandmark = landmark => {
     // const { user } = this.props;
@@ -62,7 +62,7 @@ class AddLandmark extends Component {
   handleFileChange = event => {
     let file = event.target.files[0];
     this.setState({ pictures: [...this.state.pictures, file] });
-    console.log('STATE FILE', this.state.pictures);
+    console.log("STATE FILE", this.state.pictures);
   };
 
   handleSelect = address => {
@@ -79,7 +79,7 @@ class AddLandmark extends Component {
       .then(() => {
         this.props.updateCoordinates(this.state.coordinates);
       })
-      .catch(error => console.error('Error', error));
+      .catch(error => console.error("Error", error));
   };
 
   handleSubmit = event => {
@@ -128,19 +128,19 @@ class AddLandmark extends Component {
               <div>
                 <input
                   {...getInputProps({
-                    placeholder: 'Search For Landmarks...',
-                    className: 'location-search-input'
+                    placeholder: "Search For Landmarks...",
+                    className: "location-search-input"
                   })}
                 />
                 <div className="autocomplete-dropdown-container">
                   {suggestions.map(suggestion => {
                     const className = suggestion.active
-                      ? 'suggestion-item--active'
-                      : 'suggestion-item';
+                      ? "suggestion-item--active"
+                      : "suggestion-item";
                     // inline style for demonstration purpose
                     const style = suggestion.active
-                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                      ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                      : { backgroundColor: "#ffffff", cursor: "pointer" };
                     return (
                       <div
                         {...getSuggestionItemProps(suggestion, {
@@ -169,22 +169,22 @@ class AddLandmark extends Component {
               getSuggestionItemProps,
               loading
             }) => (
-              <div>
+              <div className="landmard-src">
                 <input
                   {...getInputProps({
-                    placeholder: 'Search For Landmarks...',
-                    className: 'location-search-input'
+                    placeholder: "Search For Landmarks...",
+                    className: "location-search-input"
                   })}
                 />
                 <div className="autocomplete-dropdown-container">
                   {suggestions.map(suggestion => {
                     const className = suggestion.active
-                      ? 'suggestion-item--active'
-                      : 'suggestion-item';
+                      ? "suggestion-item--active"
+                      : "suggestion-item";
                     // inline style for demonstration purpose
                     const style = suggestion.active
-                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                      ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                      : { backgroundColor: "#ffffff", cursor: "pointer" };
                     return (
                       <div
                         {...getSuggestionItemProps(suggestion, {

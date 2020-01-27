@@ -21,11 +21,15 @@ const Entries = ({
   return (
     <div>
       <section className="Posts">
-        <AddEntry updateCoordinates={updateCoordinates} />
+        {entries.length > 1000 && (
+          <AddEntry updateCoordinates={updateCoordinates} />
+        )}
         {/* <Picture /> */}
         {/* <AddEntry onCreate={onCreate} /> */}
 
         {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
+        <h2 className="Places-head">Places to go</h2>
+
         <ul className="entry-list">
           {entries.map(entry => (
             <Entry

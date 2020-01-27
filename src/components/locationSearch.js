@@ -53,11 +53,11 @@ class LocationSearchInput extends React.Component {
         searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
+          <div className="main-page">
             <input
+              className="main-search-comp"
               {...getInputProps({
-                placeholder: "Search for Cities ...",
-                className: "location-search-input"
+                placeholder: "Search for Cities ..."
               })}
             />
             <div className="autocomplete-dropdown-container">
