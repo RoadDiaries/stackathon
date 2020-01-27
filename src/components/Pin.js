@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Component } from 'react';
-import { Popup } from 'react-mapbox-gl';
-import { css, StyleSheet } from 'aphrodite';
-import { firestore, storage } from '../firebase';
-import { collectIdsAndDocs } from './utilities';
+import * as React from "react";
+import { Component } from "react";
+import { Popup } from "react-mapbox-gl";
+import { css, StyleSheet } from "aphrodite";
+import { firestore, storage } from "../firebase";
+import { collectIdsAndDocs } from "./utilities";
 
 // const MapPopup = props => {
 class MapPopup extends Component {
@@ -18,17 +18,17 @@ class MapPopup extends Component {
   componentDidMount = async () => {
     let landmarksArr = [];
     const entryRef = firestore
-      .collection('entries')
+      .collection("entries")
       .doc(this.props.entry.address)
-      .collection('landmarks')
+      .collection("landmarks")
       .onSnapshot(snapshot => {
         landmarksArr.push(snapshot.docs.map(collectIdsAndDocs));
         // [...landmarksArr, snapshot.docs.map(collectIdsAndDocs)];
         // console.log('AFTER ENTIRES', landmarks);
       });
 
-    console.log('AJKAHKJAHDJKHJKD', landmarksArr, landmarksArr[0]);
-    console.log('!!!!!!', landmarksArr[0]);
+    await console.log("AJKAHKJAHDJKHJKD", landmarksArr);
+    // console.log('!!!!!!', landmarksArr[0]);
     let URLarr = [];
     landmarksArr.forEach(landmarkObj => {
       // let images = storage.ref().child(landmarkObj.address);
@@ -38,7 +38,7 @@ class MapPopup extends Component {
       // let pictureURL = await image.getDownloadURL();
       // console.log('PICTURE URL', pictureURL);
       // URLarr.push(pictureURL);
-      URLarr.push('TESTING');
+      URLarr.push("TESTING");
     });
 
     this.setState({ landmarks: landmarksArr, URL: URLarr });
@@ -61,7 +61,7 @@ class MapPopup extends Component {
 
   // console.log("this is the entry", entry);
   render() {
-    console.log('THIS STATE', this.state);
+    console.log("THIS STATE", this.state);
     const styles = StyleSheet.create({
       container: {
         maxWidth: 200,
@@ -69,13 +69,13 @@ class MapPopup extends Component {
         borderRadius: 5
       },
       image: {
-        margin: 'auto',
-        display: 'block',
+        margin: "auto",
+        display: "block",
         borderRadius: 5
       },
       footer: {
-        padding: '8px 12px',
-        fontFamily: 'Fjalla One'
+        padding: "8px 12px",
+        fontFamily: "Fjalla One"
       }
     });
     const { entry } = this.props;
@@ -90,7 +90,7 @@ class MapPopup extends Component {
             className={css(styles.image)}
             src={this.state.URL[0]}
             // src={`https://firebasestorage.googleapis.com/v0/b/roaddiaries-24a93.appspot.com/o/Testing%2FScreen%20Shot%202020-01-25%20at%2012.40.27%20PM.png?alt=media&token=a776dc57-d069-41a6-9e08-73694619bb74`}
-            alt={'altpic'}
+            alt={"altpic"}
           />
           {/* {entry.user.photoURL && (
           <div>

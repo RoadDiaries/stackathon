@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import {connect} from 'react-redux'
-import { withRouter, Route, Switch, BrowserRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { withRouter, Route, Switch, BrowserRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 // import {Login, Signup, UserHome} from './components'
 // import {me} from './store'
-import App from './components/app';
-import AddEntry from './components/addEntry';
-import Landmarks from './components/landmarks';
-import HomePage from './components/Home';
-import Picture from './components/picture';
-
+import App from "./components/app";
+import AddEntry from "./components/addEntry";
+import Landmarks from "./components/landmarks";
+import HomePage from "./components/Home";
+import Picture from "./components/picture";
+import SignIn from "./components/SignIn";
 /**
  * COMPONENT
  */
@@ -34,6 +34,7 @@ class Routes extends Component {
         />
         <Route exact path="/picture" component={Picture} />
         <Route exact path="/newEntry" component={AddEntry} />
+        <Route exact path="/login" component={SignIn} />
         {/* {isLoggedIn && ( */}
         {/* <Switch> */}
         {/* Routes placed here are only available after logging in */}
