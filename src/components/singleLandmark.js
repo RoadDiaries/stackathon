@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Picture from './picture';
 import { firestore } from '../firebase';
 
 const Landmark = ({
@@ -21,6 +21,7 @@ const Landmark = ({
         <h3>{name}</h3>
         <h2>{address}</h2>
         <div>{content}</div>
+        <Picture address={address} />
       </div>
       <div className="Post--meta">
         <div>
@@ -36,6 +37,7 @@ const Landmark = ({
           {/* <p>Trip Date: {date}</p> */}
           {/* <img src={picture} /> */}
         </div>
+
         <div />
         <div>
           {/* <button
