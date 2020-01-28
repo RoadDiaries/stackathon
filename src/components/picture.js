@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import { firestore, storage } from '../firebase';
+import { storage } from '../firebase';
 
 class Picture extends Component {
   state = {
     img: '',
-    urlArray: [],
-    pictureNames: []
+    pictureUrl: []
   };
 
   componentDidMount = async () => {
     const images = storage.ref().child(this.props.address);
-    let newArray = [];
-    let pictureNames = this.props.pictureNames;
-    pictureNames.forEach(async pictureName => {
+    let newUrlArray = [];
+    let pictureUrl = this.props.pictureNames;
+    pictureUrl.forEach(async pictureName => {
       let image = images.child(pictureName);
       let url = await image.getDownloadURL();
-      newArray.push(url);
+      newUrlArray.push(url);
     });
-    this.setState({ pictureNames: newArray });
+    this.setState({ pictureUrl: newUrlArray });
 
     const image = images.child(this.props.pictureNames[0]);
     const url = await image.getDownloadURL();
@@ -26,11 +25,11 @@ class Picture extends Component {
   };
 
   render() {
-    const { pictureNames, img } = this.state;
+    const { pictureUrl } = this.state;
 
     return (
       <div>
-        {pictureNames.map((pictureUrl, index) => {
+        {pictureUrl.map((pictureUrl, index) => {
           return <img src={pictureUrl} key={index} />;
         })}
       </div>
