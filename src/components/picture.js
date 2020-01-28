@@ -30,7 +30,14 @@ class Picture extends Component {
     return (
       <div>
         {pictureUrl.map((pictureUrl, index) => {
-          return <img src={pictureUrl} key={index} alt="random" />;
+          return (
+            <img
+              className="single-pic"
+              src={pictureUrl}
+              key={index}
+              alt="random"
+            />
+          );
         })}
       </div>
     );
