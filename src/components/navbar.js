@@ -15,10 +15,12 @@ const Navbar = () => (
             }
             alt="logo"
           />
-          <Link to="/">Home</Link>
-          <Link to="/newEntry">New Entry</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link className="main-links" to="/">
+            Home
+          </Link>
+          <Link className="main-links" to="/newEntry">
+            New Entry
+          </Link>
         </div>
       </div>
     </nav>

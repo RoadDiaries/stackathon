@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { storage } from '../firebase';
+import React, { Component } from "react";
+import { storage } from "../firebase";
 
 class Picture extends Component {
   state = {
-    img: '',
+    img: "",
     pictureUrl: []
   };
 
@@ -30,7 +30,7 @@ class Picture extends Component {
     return (
       <div>
         {pictureUrl.map((pictureUrl, index) => {
-          return <img src={pictureUrl} key={index} />;
+          return <img src={pictureUrl} key={index} alt="random" />;
         })}
       </div>
     );

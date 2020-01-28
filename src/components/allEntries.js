@@ -28,7 +28,7 @@ const Entries = ({
         {/* <AddEntry onCreate={onCreate} /> */}
 
         {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
-        <h2 className="Places-head">Places to go</h2>
+        <h2 className="Places-head">Places We Visited</h2>
 
         <ul className="entry-list">
           {entries.map(entry => (

@@ -1,6 +1,6 @@
-import React from 'react';
-import Picture from './picture';
-import { firestore } from '../firebase';
+import React from "react";
+import Picture from "./picture";
+import { firestore } from "../firebase";
 
 const Landmark = ({
   name,
@@ -17,12 +17,16 @@ const Landmark = ({
   //   const remove = () => postRef.delete(); //
 
   return (
-    <li>
+    <li className="page-entry">
       <div className="Landmarl--content">
-        <h3>{name}</h3>
-        <h2>{address}</h2>
-        <div>{content}</div>
-        <Picture address={address} pictureNames={pictureNames} />
+        <div className="land-info">
+          <h3>{name}</h3>
+          <h2>{address}</h2>
+          <div>{content}</div>
+        </div>
+        <div className="picture-container">
+          <Picture address={address} pictureNames={pictureNames} />
+        </div>
       </div>
       <div className="Post--meta">
         <div>
