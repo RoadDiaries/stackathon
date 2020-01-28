@@ -4,6 +4,7 @@ import { Popup } from 'react-mapbox-gl';
 import { css, StyleSheet } from 'aphrodite';
 import { firestore, storage } from '../firebase';
 import { collectIdsAndDocs } from './utilities';
+import { Link } from 'react-router-dom';
 
 class MapPopup extends Component {
   state = {
@@ -56,8 +57,8 @@ class MapPopup extends Component {
   render() {
     const styles = StyleSheet.create({
       container: {
-        maxWidth: 200,
-        minWidth: 120,
+        maxWidth: 250,
+        minWidth: 180,
         borderRadius: 5
       },
       image: {
@@ -76,7 +77,8 @@ class MapPopup extends Component {
     if (this.state.imgUrl.length) {
       popUp = (
         <img
-          className={css(styles.image)}
+          // className={css(styles.image)}
+          className="pop-up-pic"
           src={this.state.imgUrl}
           alt={'altpic'}
         />
@@ -92,7 +94,9 @@ class MapPopup extends Component {
         <div className={css(styles.container)}>
           {popUp}
           <div className={css(styles.footer)}>
-            <h1 style={{ fontSize: 15 }}>{entry.address}</h1>
+            <Link to={`/entries/${entry.address}`}>
+              <h1 style={{ fontSize: 15 }}>{entry.address}</h1>
+            </Link>
           </div>
         </div>
       </Popup>
