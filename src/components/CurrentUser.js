@@ -18,7 +18,9 @@ const CurrentUser = ({ displayName, photoURL, email, createdAt, children }) => {
       </div>
       <div>
         <div>{children}</div>
-        <button onClick={signOut}>Sign Out</button>
+        <button className="delete" onClick={signOut}>
+          Sign Out
+        </button>
       </div>
     </section>
   );

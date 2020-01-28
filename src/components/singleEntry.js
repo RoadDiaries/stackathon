@@ -11,13 +11,17 @@ const Entry = ({ id, address, coordinates, updateCoordinates }) => {
     <li>
       {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
       <div className="Post--content">
-        <Link className="Post--content" to={`/entries/${id}`}>
-          <h3 className="Post--content">{address}</h3>
+        <Link className="main-name" to={`/entries/${id}`}>
+          <h3 className="main-name">{address}</h3>
         </Link>
       </div>
       <div className="Entry--meta">
-        <div>
-          <button type="submit" onClick={() => updateCoordinates(coordinates)}>
+        <div className="buttons">
+          <button
+            className="show-btn"
+            type="submit"
+            onClick={() => updateCoordinates(coordinates)}
+          >
             Show In Map
           </button>
           <button
@@ -30,7 +34,7 @@ const Entry = ({ id, address, coordinates, updateCoordinates }) => {
                 .delete();
             }}
           >
-            Delete
+            X
           </button>
         </div>
       </div>

@@ -143,13 +143,13 @@ class AddEntry extends Component {
               )}
             </PlacesAutocomplete>
             <form onSubmit={this.handleSubmit} className="AddEntry">
-              <button
+              {/* <button
                 className="create-entry"
                 type="submit"
                 value="Create Entry"
-              >
-                <AddedToMap />
-              </button>
+                >
+              </button>*/}
+              <AddedToMap />
             </form>
 
             <AddLandmark

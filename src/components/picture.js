@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { firestore, storage } from '../firebase';
+import React, { Component } from "react";
+import { firestore, storage } from "../firebase";
 
 class Picture extends Component {
   state = {
-    img: '',
+    img: "",
     urlArray: [],
     pictureNames: []
   };
@@ -31,7 +31,14 @@ class Picture extends Component {
     return (
       <div>
         {pictureNames.map((pictureUrl, index) => {
-          return <img src={pictureUrl} key={index} />;
+          return (
+            <img
+              className="single-pic"
+              src={pictureUrl}
+              key={index}
+              alt="land-pic"
+            />
+          );
         })}
       </div>
     );

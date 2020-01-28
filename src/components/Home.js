@@ -72,37 +72,39 @@ export class HomePage extends Component {
   render() {
     const { entries } = this.state;
     return (
-      <div className="main-container">
-        <aside className="sidebar">
-          <Authentication user={this.state.user} />
-          <Entries
-            entries={entries}
-            updateCoordinates={this.submitCoordinates}
-            handleClick={this.handleClick}
-            // onCreate={this.handleCreate}
-            // onRemove={this.handleRemove}
-          />
-        </aside>
-        <nav className="nav">
-          <form onSubmit={this.onSubmit}>
-            <LocationSearch updateCoordinates={this.submitCoordinates} />
-            <button className="search-btn" type="submit">
-              Search
-            </button>
-          </form>
-          <div>
-            <Map
-              // landmark={this.state.landmarks && this.state.landmarks.landmark}
-
-              // {...this.props}
-              // {...this.state}
+      <React.Fragment>
+        <form onSubmit={this.onSubmit} className="main-form">
+          <LocationSearch updateCoordinates={this.submitCoordinates} />
+          <button className="search-btn" type="submit">
+            Search
+          </button>
+        </form>
+        <div className="main-container">
+          <aside className="sidebar">
+            <Authentication user={this.state.user} />
+            <Entries
               entries={entries}
-              coordinates={this.state.coordinates}
-              selectedPin={this.selectedPin}
+              updateCoordinates={this.submitCoordinates}
+              handleClick={this.handleClick}
+              // onCreate={this.handleCreate}
+              // onRemove={this.handleRemove}
             />
-          </div>
-        </nav>
-      </div>
+          </aside>
+          <nav className="nav">
+            <div>
+              <Map
+                // landmark={this.state.landmarks && this.state.landmarks.landmark}
+
+                // {...this.props}
+                // {...this.state}
+                entries={entries}
+                coordinates={this.state.coordinates}
+                selectedPin={this.selectedPin}
+              />
+            </div>
+          </nav>
+        </div>
+      </React.Fragment>
     );
   }
 }

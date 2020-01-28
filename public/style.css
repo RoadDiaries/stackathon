@@ -36,6 +36,7 @@ html {
   font-size: 0.65em;
   display: flex;
   border-right: 5px solid #111430;
+  flex-direction: column;
 }
 .main {
   display: flex;
@@ -67,15 +68,15 @@ a {
   color: white;
 }
 
-:not(.active)::after {
+/* :not(.active)::after {
   opacity: 0.2;
-}
+} */
 
 :not(.active):hover a {
   color: rgba(#fff, 0.75);
 }
 
-::after {
+/* ::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -84,7 +85,7 @@ a {
   left: 0;
   bottom: 0;
   background-image: linear-gradient(to right, #5e42a6, #b74e91);
-}
+} */
 .twitter {
   position: relative;
   width: 75%;
@@ -131,9 +132,13 @@ p {
   height: 700px;
   overflow-y: scroll;
   width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .Post--content {
   color: white;
+  text-align: center;
 }
 .AddEntry {
   display: flex;
@@ -146,6 +151,7 @@ p {
   margin: 7px;
   width: 25%;
   border-radius: 8px;
+  text-align: center;
 }
 
 body {
@@ -203,6 +209,8 @@ body {
   height: 20px;
   border-radius: 8px;
   font-weight: 800;
+  text-align: center;
+  background-color: lightcyan;
 }
 input {
   width: 50%;
@@ -216,17 +224,23 @@ input {
   color: white;
   font-size: 20px;
   background-color: peru;
+  border-radius: 30px;
+  height: 30px;
 }
 .main-page {
   width: 50%;
 }
 .main-search-comp {
   height: 30px;
+  width: 96%;
 }
 .search-btn {
   height: 34px;
   border-radius: 8px;
-  width: 67px;
+  width: 85px;
+  background-color: #3b5998;
+  color: white;
+  font-weight: 800;
 }
 .entry-form-container {
   background-image: linear-gradient(#4ecdc4, #556270);
@@ -249,28 +263,34 @@ input {
   justify-content: center;
 }
 .both-forms {
-  width: 30%;
-  height: 400px;
+  width: 35%;
+  height: 600px;
   /* background-color: #0d87cefa; */
-  background: rgba(255, 255, 255, 0.3);
+  background-image: url("https://ak9.picdn.net/shutterstock/videos/1024066349/thumb/1.jpg");
+  /* background: rgba(255, 255, 255, 0.3); */
+  /* background-color: #e6f1f5; */
   box-shadow: 0 5px 10px black;
   border-radius: 40px;
   justify-content: space-evenly;
 }
 .CurrentUser-pic {
   height: 100px;
+  border-radius: 50px;
 }
 .create,
 .drop-zone {
   align-self: center;
+  margin: 30px;
 }
 
 .add-desc {
-  background-color: white;
+  background-color: lightcyan;
   font-weight: 800;
   width: 80%;
   height: 100px;
   align-self: center;
+  text-align: center;
+  margin: 30px;
 }
 .create-land {
   align-self: center;
@@ -289,9 +309,15 @@ input {
   font-weight: 800;
   border-radius: 9px;
 }
+.create-entry:hover,
+.create-land:hover {
+  background-color: #64e687;
+  color: white;
+}
 .create-date {
   align-self: center;
   width: 115px;
+  padding-left: 3em;
 }
 .logo-pic {
   height: 29px;
@@ -303,5 +329,83 @@ p.user-info {
   color: white;
 }
 .delete {
-  margin: 20px;
+  margin: 8px;
+  height: 25px;
+  border-radius: 14px;
+  color: #ad422e;
+  font-size: 1rem;
+  background: transparent;
+}
+.picture-container {
+  align-self: center;
+  font-size: 16px;
+  background: white;
+  color: white;
+  font-weight: 800;
+  border-radius: 9px;
+}
+.single-pic {
+  height: 250px;
+  width: 250px;
+  margin: 25px;
+}
+.land-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #3b5998;
+  box-shadow: 0 5px 10px black;
+}
+.Landmarl-content {
+  max-width: 1200px;
+}
+.page-entry {
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+}
+.Landmarks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* .buttons {
+  display: flex;
+  justify-content: space-between;
+} */
+.show-btn {
+  height: 25px;
+  border-radius: 14px;
+  color: #64e687;
+  font-size: 1rem;
+  background: transparent;
+}
+.main-form {
+  text-align: center;
+}
+.show-btn:hover {
+  background-color: #64e687;
+  color: white;
+}
+.delete:hover {
+  background-color: #ad422e;
+  color: white;
+}
+.search-btn:hover {
+  background-color: peru;
+  color: white;
+}
+.main-name {
+  font-size: 17px;
+  color: white;
+}
+.main-name:hover {
+  background-color: #64e687;
+  color: red;
+  border-radius: 30px;
+}
+.main-links:hover {
+  background-color: tomato;
+  color: white;
+  border-radius: 40px;
 }
