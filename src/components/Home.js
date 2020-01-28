@@ -71,6 +71,7 @@ export class HomePage extends Component {
 
   render() {
     const { entries } = this.state;
+    console.log("HOME", entries);
     return (
       <React.Fragment>
         <form onSubmit={this.onSubmit} className="main-form">

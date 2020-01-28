@@ -18,20 +18,6 @@ export class Map extends React.Component {
     this.onPinCLick = this.onPinCLick.bind(this);
   }
 
-  setLoaded = () => {
-    this.setState({ hasLoaded: true });
-  };
-  // componentDidMount() {
-  //   console.log("IN CDM", this.props);
-  //   this.setState({
-  //     selectedPin: {
-  //       id: "Canberra ACT, Australia",
-  //       address: "Canberra ACT, Australia",
-  //       coordinates: [-35.2809368, 149.1300092]
-  //     }
-  //   });
-  // }
-
   static getDerivedStateFromProps(nextProps, prevState) {
     const { coordinates, landmark, hoverItem } = nextProps;
     if (hoverItem) {
@@ -70,7 +56,7 @@ export class Map extends React.Component {
 
   render() {
     const { pinLandmark } = this.state;
-    // console.log('IN RENDER', this.props);
+    console.log('IN MAP', this.state, 'PROPS', this.props);
     const { entries } = this.props;
     return (
       <MapBoxMap
@@ -79,9 +65,7 @@ export class Map extends React.Component {
         center={this.state.center}
         zoom={this.state.zoom}
       >
-        {this.state.selectedPin && (
-          <MapPopup entry={this.state.selectedPin} setLoaded={this.setLoaded} />
-        )}
+        {this.state.selectedPin && <MapPopup entry={this.state.selectedPin} />}
         <Layer
           type="symbol"
           layout={{
