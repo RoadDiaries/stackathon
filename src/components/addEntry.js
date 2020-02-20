@@ -1,23 +1,19 @@
 /*global google*/
 
-import { Route } from "react-router-dom";
-import React, { Component } from "react";
-import { firestore } from "../firebase";
-import AddLandmark from "./addLandmark";
-import { AddedToMap } from "./toasts";
-// import LocationSearchInput from "./locationSearch";
+import React, { Component } from 'react';
+import { firestore } from '../firebase';
+import AddLandmark from './addLandmark';
+import { AddedToMap } from './toasts';
 import PlacesAutocomplete, {
   geocodeByAddress,
-  geocodeByPlaceId,
   getLatLng
-} from "react-places-autocomplete";
-import Map from "./Map";
+} from 'react-places-autocomplete';
 
 class AddEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: "",
+      address: '',
       coordinates: []
     };
     this.handleChange = this.handleChange.bind(this);
@@ -36,7 +32,6 @@ class AddEntry extends Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => {
-        // console.log("result arer", results);
         return getLatLng(results[0]);
       })
       .then(latLng => {
@@ -48,37 +43,31 @@ class AddEntry extends Component {
       .then(() => {
         this.props.updateCoordinates(this.state.coordinates);
       })
-      .catch(error => console.error("Error", error));
+      .catch(error => console.error('Error', error));
   };
   handleSubmit = event => {
     event.preventDefault();
-    // console.log("this is our state, ", this.state);
-
     const { address, coordinates } = this.state;
-    // const { uid, displayName, email, photoURL } = auth.currentUser || {};
-
     const entry = {
       address,
       coordinates,
 
       user: {
-        uid: "1111",
-        displayName: "John Doe",
-        email: "John@gmail.com",
-        photoURL: "http://placekitten.com/g/200/200"
+        uid: '1111',
+        displayName: 'John Doe',
+        email: 'John@gmail.com',
+        photoURL: 'http://placekitten.com/g/200/200'
       }
     };
 
     firestore
-      .collection("entries")
+      .collection('entries')
       .doc(entry.address)
       .set(entry);
 
     const entryref = firestore.doc(`entries/${entry.address}`);
-    // console.log(entryref);
 
     this.setState({
-      // address: "",
       coordinates: []
     });
   };
@@ -115,18 +104,18 @@ class AddEntry extends Component {
                   <input
                     className="location-search-input"
                     {...getInputProps({
-                      placeholder: "Search for Cities ..."
+                      placeholder: 'Search for Cities ...'
                     })}
                   />
                   <div className="autocomplete-dropdown-container">
                     {suggestions.map(suggestion => {
                       const className = suggestion.active
-                        ? "suggestion-item--active"
-                        : "suggestion-item";
+                        ? 'suggestion-item--active'
+                        : 'suggestion-item';
                       // inline style for demonstration purpose
                       const style = suggestion.active
-                        ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                        : { backgroundColor: "#ffffff", cursor: "pointer" };
+                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
                       return (
                         <div
                           {...getSuggestionItemProps(suggestion, {
@@ -143,12 +132,6 @@ class AddEntry extends Component {
               )}
             </PlacesAutocomplete>
             <form onSubmit={this.handleSubmit} className="AddEntry">
-              {/* <button
-                className="create-entry"
-                type="submit"
-                value="Create Entry"
-                >
-              </button>*/}
               <AddedToMap />
             </form>
 
@@ -164,12 +147,3 @@ class AddEntry extends Component {
 }
 
 export default AddEntry;
-
-//  <input
-//     id="city-search"
-//     type="text"
-//     name="city"
-//     placeholder="City"
-//     value={city}
-//     onChange={this.handleChange}
-//   />

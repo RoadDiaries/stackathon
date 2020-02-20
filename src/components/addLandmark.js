@@ -1,21 +1,20 @@
 /*global google*/
 
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
-  geocodeByPlaceId,
   getLatLng
-} from "react-places-autocomplete";
-import { firestore, storage } from "../firebase";
-import { MyDropzone } from "./dropZone";
+} from 'react-places-autocomplete';
+import { firestore, storage } from '../firebase';
+import { MyDropzone } from './dropZone';
 
 class AddLandmark extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      address: "",
-      content: "",
+      name: '',
+      address: '',
+      content: '',
       date: new Date(),
       pictures: [],
       coordinates: []
@@ -28,17 +27,14 @@ class AddLandmark extends Component {
     this.createLandmark = this.createLandmark.bind(this);
   }
   get entryRef() {
-    console.log("HEEEEERE", this.props); //, this.props.match.params.id);
     return firestore.doc(`entries/${this.props.city}`);
   }
   get landmarksRef() {
-    return this.entryRef.collection("landmarks");
+    return this.entryRef.collection('landmarks');
   }
   createLandmark = landmark => {
-    // const { user } = this.props;
     this.landmarksRef.doc(this.state.address).set({
       ...landmark
-      //   user
     });
   };
   storePictures = pictures => {
@@ -54,16 +50,12 @@ class AddLandmark extends Component {
     this.setState({ address });
   };
   handleChange = event => {
-    // console.log('EVENT TAGRET IN HANDLE CHANGE', event.target);
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    // console.log('STATE OTHER', this.state);
   };
 
   handleFileChange = file => {
-    // let file = event.target.files[0];
     this.setState({ pictures: [...this.state.pictures, file] });
-    console.log("STATE FILE", this.state.pictures);
   };
 
   handleSelect = address => {
@@ -80,26 +72,16 @@ class AddLandmark extends Component {
       .then(() => {
         this.props.updateCoordinates(this.state.coordinates);
       })
-      .catch(error => console.error("Error", error));
+      .catch(error => console.error('Error', error));
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    // console.log('HANDLE SUBMIT', this.state);
     const content = this.state.content;
     const address = this.state.address;
     const pictures = this.state.pictures;
     this.createLandmark({ content, address, pictures });
     this.storePictures(this.state.pictures);
-
-    // this.setState({
-    //   name: '',
-    //   address: '',
-    //   content: '',
-    //   date: new Date(),
-    //   pictures: [],
-    //   coordinates: []
-    // });
   };
 
   render() {
@@ -110,8 +92,7 @@ class AddLandmark extends Component {
       ),
       radius: 2000
     };
-    const { name, content, date, pictures } = this.state;
-    // console.log('TRUTHY', this.props.updateCoordinates ? 'TRUE' : 'FALSE');
+    const { content, date } = this.state;
     return (
       <div>
         {this.props.updateCoordinates ? (
@@ -131,19 +112,19 @@ class AddLandmark extends Component {
                 <input
                   className="land-search"
                   {...getInputProps({
-                    placeholder: "Search For Landmarks...",
-                    className: "location-search-input"
+                    placeholder: 'Search For Landmarks...',
+                    className: 'location-search-input'
                   })}
                 />
                 <div className="autocomplete-dropdown-container">
                   {suggestions.map(suggestion => {
                     const className = suggestion.active
-                      ? "suggestion-item--active"
-                      : "suggestion-item";
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
                     // inline style for demonstration purpose
                     const style = suggestion.active
-                      ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                      : { backgroundColor: "#ffffff", cursor: "pointer" };
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
                     return (
                       <div
                         {...getSuggestionItemProps(suggestion, {
@@ -163,7 +144,6 @@ class AddLandmark extends Component {
           <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChangeSearch}
-            //   onSelect={this.handleSelect}
             searchOptions={searchOptions}
           >
             {({
@@ -175,19 +155,19 @@ class AddLandmark extends Component {
               <div className="landmard-src">
                 <input
                   {...getInputProps({
-                    placeholder: "Search For Landmarks...",
-                    className: "location-search-input"
+                    placeholder: 'Search For Landmarks...',
+                    className: 'location-search-input'
                   })}
                 />
                 <div className="autocomplete-dropdown-container">
                   {suggestions.map(suggestion => {
                     const className = suggestion.active
-                      ? "suggestion-item--active"
-                      : "suggestion-item";
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
                     // inline style for demonstration purpose
                     const style = suggestion.active
-                      ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                      : { backgroundColor: "#ffffff", cursor: "pointer" };
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
                     return (
                       <div
                         {...getSuggestionItemProps(suggestion, {
@@ -239,11 +219,3 @@ class AddLandmark extends Component {
 }
 
 export default AddLandmark;
-
-// <input
-// type="file"
-// name="pictures"
-// accept="image/png, image/jpeg"
-// multiple={true}
-// onChange={this.handleFileChange}
-// />
