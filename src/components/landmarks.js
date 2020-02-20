@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-
 import SingleEntry from './singleEntry';
 import LandmarkContainer from './landmarkContainer';
 import { firestore } from '../firebase';
 import { collectIdsAndDocs } from '../components/utilities';
-
-// import { withRouter } from 'react-router-dom';
-// import Landmark from './singleLandmark';
-// import withUser from './withUser';
 
 class Landmarks extends Component {
   state = { entry: null, landmarks: [], pictureNames: [] };
 
   get entryRef() {
     return firestore.doc(`entries/${this.props.city}`);
-    // return firestore.doc(`entries/${this.props.match.params.id}`);
   }
   get landmarksRef() {
     return this.entryRef.collection('landmarks');
@@ -43,15 +37,12 @@ class Landmarks extends Component {
     this.unsubscribeFromPictureNames();
   };
   createLandmark = landmark => {
-    // const { user } = this.props;
     this.landmarksRef.add({
       ...landmark
-      //   user
     });
   };
   render() {
     const { entry, landmarks, pictureNames } = this.state;
-    console.log('IN LANDMARKS', this.props, landmarks);
     return (
       <section>
         {entry && <SingleEntry {...entry} />}
@@ -66,5 +57,4 @@ class Landmarks extends Component {
   }
 }
 
-// export default withRouter(withUser(PostPage));
 export default Landmarks;

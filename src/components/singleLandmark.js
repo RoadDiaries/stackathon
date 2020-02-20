@@ -1,21 +1,14 @@
-import React from "react";
-import Picture from "./picture";
-import { firestore } from "../firebase";
+import React from 'react';
+import Picture from './picture';
 
 const Landmark = ({
   name,
   address,
   content,
-  user,
-  date,
   picture,
-  visitDate,
   coordinates,
   pictureNames
 }) => {
-  //   const postRef = firestore.doc(`posts/${id}`); //
-  //   const remove = () => postRef.delete(); //
-
   return (
     <li className="page-entry">
       <div className="Landmarl--content">
@@ -38,26 +31,8 @@ const Landmark = ({
             <span role="img" aria-label="picture" />
             {picture}
           </p>
-          {/* <p>Posted by {user.displayName}</p> */}
-          {/* <p>Trip Date: {date}</p> */}
-          {/* <img src={picture} /> */}
         </div>
-
         <div />
-        <div>
-          {/* <button
-            type="button"
-            className="delete"
-            onClick={function() {
-              return firestore
-                .collection('entries')
-                .doc(city)
-                .delete();
-            }}
-          >
-            Delete
-          </button> */}
-        </div>
       </div>
     </li>
   );

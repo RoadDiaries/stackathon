@@ -76,12 +76,7 @@ class MapPopup extends Component {
     let popUp = <h5>Loading...</h5>;
     if (this.state.imgUrl.length) {
       popUp = (
-        <img
-          // className={css(styles.image)}
-          className="pop-up-pic"
-          src={this.state.imgUrl}
-          alt={'altpic'}
-        />
+        <img className="pop-up-pic" src={this.state.imgUrl} alt={'altpic'} />
       );
     }
 

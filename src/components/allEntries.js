@@ -1,33 +1,14 @@
-import React, { useContext } from "react";
-import Entry from "./singleEntry";
-// import AddEntry from "./addEntry";
-import AddEntry from "./addEntry";
+import React from 'react';
+import Entry from './singleEntry';
+import AddEntry from './addEntry';
 
-import Picture from "./picture";
-import { EntriesContext } from "../providers/entriesProvider";
-import { firestore, storage } from "../firebase";
-import { tsPropertySignature } from "@babel/types";
-
-// const Entries = () => {
-const Entries = ({
-  entries,
-  onCreate,
-  onRemove,
-  updateCoordinates,
-  handleClick
-}) => {
-  // const entries = useContext(EntriesContext);
-  console.log("HERE", entries);
+const Entries = ({ entries, updateCoordinates }) => {
   return (
     <div>
       <section className="Posts">
         {entries.length > 1000 && (
           <AddEntry updateCoordinates={updateCoordinates} />
         )}
-        {/* <Picture /> */}
-        {/* <AddEntry onCreate={onCreate} /> */}
-
-        {/* <img src="https://media.graytvinc.com/images/PERDITA+16+9.jpg" /> */}
         <h2 className="Places-head">Places We Visited</h2>
 
         <ul className="entry-list">

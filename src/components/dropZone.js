@@ -1,13 +1,11 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
-import { firestore, storage } from "../firebase";
-import { ConsoleWriter } from "istanbul-lib-report";
-import { removePropertiesDeep } from "@babel/types";
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { storage } from '../firebase';
 
 export function MyDropzone(props) {
   const onDrop = useCallback(
     pictures => {
-      alert("Got Your Picture");
+      alert('Got Your Picture');
       pictures.forEach(picture => {
         props.handleFileChange(picture.name);
         console.log(props, picture);
@@ -18,13 +16,8 @@ export function MyDropzone(props) {
           .put(picture);
       });
     },
-    [props.state.address]
+    [props]
   );
-  // const picName = props.handleFileChange(pictures => {
-  //   pictures.forEach(picture => {
-  //     console.log(picture)
-  //   })
-  // },[])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

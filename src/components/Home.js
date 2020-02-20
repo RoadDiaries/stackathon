@@ -1,15 +1,14 @@
 // import "react-dates/initialize";
-import React, { Component } from "react";
-import LocationSearch from "./locationSearch";
-import { firestore, auth } from "../firebase";
-import { collectIdsAndDocs } from "./utilities";
-import Entries from "./allEntries";
-import { Map } from "./Map";
-import MapPopup from "./Pin";
-import { accessToken } from "./token";
+import React, { Component } from 'react';
+import LocationSearch from './locationSearch';
+import { firestore, auth } from '../firebase';
+import { collectIdsAndDocs } from './utilities';
+import Entries from './allEntries';
+import { Map } from './Map';
+import { accessToken } from './token';
 
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
-import Authentication from "./Authentication";
+import ReactMapboxGl from 'react-mapbox-gl';
+import Authentication from './Authentication';
 
 const MapBoxMap = ReactMapboxGl({ accessToken });
 
@@ -33,10 +32,9 @@ export class HomePage extends Component {
   unsubscribe = null;
   unsubscribeFromAuth = null;
   async componentDidMount() {
-    this.unsubscribe = firestore.collection("entries").onSnapshot(snapshot => {
+    this.unsubscribe = firestore.collection('entries').onSnapshot(snapshot => {
       const entries = snapshot.docs.map(collectIdsAndDocs);
       this.setState({ entries });
-      console.log("AFTER ENTIRES", this.state);
     });
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
       this.setState({ user });
@@ -71,7 +69,6 @@ export class HomePage extends Component {
 
   render() {
     const { entries } = this.state;
-    console.log("HOME", entries);
     return (
       <React.Fragment>
         <form onSubmit={this.onSubmit} className="main-form">
@@ -87,17 +84,11 @@ export class HomePage extends Component {
               entries={entries}
               updateCoordinates={this.submitCoordinates}
               handleClick={this.handleClick}
-              // onCreate={this.handleCreate}
-              // onRemove={this.handleRemove}
             />
           </aside>
           <nav className="nav">
             <div>
               <Map
-                // landmark={this.state.landmarks && this.state.landmarks.landmark}
-
-                // {...this.props}
-                // {...this.state}
                 entries={entries}
                 coordinates={this.state.coordinates}
                 selectedPin={this.selectedPin}

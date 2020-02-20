@@ -55,8 +55,6 @@ export class Map extends React.Component {
   }
 
   render() {
-    const { pinLandmark } = this.state;
-    console.log('IN MAP', this.state, 'PROPS', this.props);
     const { entries } = this.props;
     return (
       <MapBoxMap

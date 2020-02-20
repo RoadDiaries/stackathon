@@ -1,16 +1,16 @@
 /*global google*/
 
-import React from "react";
+import React from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
   getLatLng
-} from "react-places-autocomplete";
+} from 'react-places-autocomplete';
 
 class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: "", coordinates: [] };
+    this.state = { address: '', coordinates: [] };
     this.handleChange = this.handleChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
@@ -22,7 +22,6 @@ class LocationSearchInput extends React.Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => {
-        // console.log("result arer", results);
         return getLatLng(results[0]);
       })
       .then(latLng => {
@@ -34,7 +33,7 @@ class LocationSearchInput extends React.Component {
       .then(() => {
         this.props.updateCoordinates(this.state.coordinates);
       })
-      .catch(error => console.error("Error", error));
+      .catch(error => console.error('Error', error));
   };
 
   render() {
@@ -57,18 +56,18 @@ class LocationSearchInput extends React.Component {
             <input
               className="main-search-comp"
               {...getInputProps({
-                placeholder: "Search for Cities ..."
+                placeholder: 'Search for Cities ...'
               })}
             />
             <div className="autocomplete-dropdown-container">
               {suggestions.map(suggestion => {
                 const className = suggestion.active
-                  ? "suggestion-item--active"
-                  : "suggestion-item";
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                  : { backgroundColor: "#ffffff", cursor: "pointer" };
+                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
                 return (
                   <div
                     {...getSuggestionItemProps(suggestion, {
